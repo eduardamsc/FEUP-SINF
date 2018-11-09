@@ -1,14 +1,16 @@
 # FEUP-SINF
 A repository to host code developed for SINF.
 
-# Get Started
+# Sales Order Picking
 
-'npm install -g create-react-native-web-app'
+## Get Started
 
-'create-react-native-web-app webApp'
+`npm install -g create-react-native-web-app`
 
-## Run Web App
+`create-react-native-web-app webApp`
 
-'cd webApp'
+### Run Web App
 
-'npm run web'
+`cd webApp`
+
+`npm run web`

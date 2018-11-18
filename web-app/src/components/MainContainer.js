@@ -3,6 +3,7 @@ import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import { Route, NavLink as RRNavLink, BrowserRouter } from 'react-router-dom';
 import Home from './Home';
 import Wave from './Wave';
+import ProductLocation from './ProductLocation';
 
 class MainContainer extends Component {
 
@@ -25,7 +26,8 @@ class MainContainer extends Component {
               </Nav>
           </Navbar>
           <Route exact path="/" component={Home} />
-          <Route path="/wave" component={Wave} />
+          <Route exact path="/wave" component={Wave} />
+          <Route path="/wave/productLocation" component={ProductLocation} />
         </div>
       </BrowserRouter>
     );

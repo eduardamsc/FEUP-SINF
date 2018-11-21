@@ -3,6 +3,7 @@ import { Table, NavLink } from 'reactstrap';
 import { NavLink as RRNavLink } from 'react-router-dom';
 
 const API_ENDPOINT = 'http://localhost:2018/WebApi';
+var token;
 
 export function makeRequestBody(body) {
     let formData = new URLSearchParams();
@@ -14,19 +15,37 @@ export function makeRequestBody(body) {
     return formData;
 };
 
+export function makeRequestHeader(header) {
+    let formData = new URLSearchParams();
+
+    for (var key in header) {
+        formData.append(key, header[key]);
+      }
+  
+      return formData;
+
+};
+
 export function authenticate() {
+    
     return fetch(`${API_ENDPOINT}/token`, {
         method: 'POST',
         body: makeRequestBody(
             {
                 username: 'FEUP',
                 password: 'qualquer1',
-                company: 'demo',
+                company: 'BELAFLOR',
                 instance: 'DEFAULT',
-                line: 'professional',
+                Line: 'Professional',
                 grant_type: 'password'
             }
         ),
+    }).then(function(response){
+        return response.json();
+    }).then(function(data) {
+        token = data.access_token; 
+        console.log(token);
+                       
     });
 }
 
@@ -37,33 +56,53 @@ class Wave extends Component {
         this.state = {
             error: null,
             isLoaded: false,
-            //projects: []
+            companies: []
         };
 
     }
 
-  componentDidMount() {
-      const route = API_ENDPOINT;
-      fetch(route)
-          .then(res => res.json())
-          .then(
-              (result) => {
-                  this.setState({
-                      isLoaded: true,
-                  });
-              },
-              (error) => {
-                  this.setState({
-                      isLoaded: true,
-                      error
-                  });
-              }
-          );
+  async componentDidMount() {
+      if(token == null){
+        await authenticate();
+        console.log("\nFEZ AUTHENTICATE")
+        
+      }
+      const route = API_ENDPOINT + '/Administrador/ListaEmpresas';
+      console.log('Bearer ' + token);
+      
+      fetch(route, {
+          headers: makeRequestHeader({
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/x-wwww-form-urlencoded'
+          }),
+        })
+        .then(function(response){
+            return response.json();   
+        }).then(
+            (result) => {
+              this.setState({
+                isLoaded: true,
+                companies: result
+              })
+            });
+     
 
   }
 
     render() {
+        const { companies } = this.state;
+
         return (
+            <div>
+                <ul>
+                    {companies.map(company => (
+                        <li key={company.name}>
+                        {company.name} {company.price}
+                        </li>
+                    ))}
+                </ul>
+       
+ 
           <div>
             <div>
                 <h4>Picking Wave to be prepared</h4>
@@ -97,8 +136,11 @@ class Wave extends Component {
               </tbody>
             </Table>
           </div>
+
+          </div>
         );
     }
 }
 
 export default Wave;
+

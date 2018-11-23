@@ -5,7 +5,7 @@ import { NavLink as RRNavLink } from 'react-router-dom';
 const API_ENDPOINT = 'http://localhost:2018/WebApi';
 var token;
 
-export function makeRequestBody(body) {
+export function makeRequest(body) {
     let formData = new URLSearchParams();
 
     for (var key in body) {
@@ -15,22 +15,11 @@ export function makeRequestBody(body) {
     return formData;
 };
 
-export function makeRequestHeader(header) {
-    let formData = new URLSearchParams();
-
-    for (var key in header) {
-        formData.append(key, header[key]);
-      }
-  
-      return formData;
-
-};
-
 export function authenticate() {
-    
+
     return fetch(`${API_ENDPOINT}/token`, {
         method: 'POST',
-        body: makeRequestBody(
+        body: makeRequest(
             {
                 username: 'FEUP',
                 password: 'qualquer1',
@@ -43,9 +32,9 @@ export function authenticate() {
     }).then(function(response){
         return response.json();
     }).then(function(data) {
-        token = data.access_token; 
+        token = data.access_token;
         console.log(token);
-                       
+
     });
 }
 
@@ -65,19 +54,19 @@ class Wave extends Component {
       if(token == null){
         await authenticate();
         console.log("\nFEZ AUTHENTICATE")
-        
+
       }
       const route = API_ENDPOINT + '/Administrador/ListaEmpresas';
       console.log('Bearer ' + token);
-      
+
       fetch(route, {
-          headers: makeRequestHeader({
+          headers: makeRequest({
             'Authorization': 'Bearer ' + token,
             'Content-Type': 'application/x-wwww-form-urlencoded'
           }),
         })
         .then(function(response){
-            return response.json();   
+            return response.json();
         }).then(
             (result) => {
               this.setState({
@@ -85,7 +74,7 @@ class Wave extends Component {
                 companies: result
               })
             });
-     
+
 
   }
 
@@ -101,8 +90,8 @@ class Wave extends Component {
                         </li>
                     ))}
                 </ul>
-       
- 
+
+
           <div>
             <div>
                 <h4>Picking Wave to be prepared</h4>
@@ -143,4 +132,3 @@ class Wave extends Component {
 }
 
 export default Wave;
-

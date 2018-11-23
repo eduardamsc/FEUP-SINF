@@ -1,18 +1,37 @@
-const express = require('express');
+const express = require('express')
+const path = require('path')
+const cookieParser = require('cookie-parser')
+const logger = require('morgan')
 
-const app = express();
+require('dotenv').config()
 
-app.get('/api/customers', (req, res) => {
-  const customers = [
-    {id: 1, firstName: 'Francisca', lastName: 'Paupério'},
-    {id: 2, firstName: 'Mariana', lastName: 'Silva'},
-    {id: 3, firstName: 'Eduarda', lastName: 'Cunha'},
-    {id: 4, firstName: 'Francisca', lastName: 'Cerquinho'},
-    {id: 5, firstName: 'Luís', lastName: 'Saraiva'}
-  ];
-  res.json(customers);
-});
+const uuid = require('uuid/v4')
+const session = require('express-session')
 
-const port = 3001;
+// REQUIRE ROUTS
+const index = require('./routes/index')
+//const orders = require('./routes/orders')
 
-app.listen(port, () => console.log(`Server started on port ${port}`));
+const app = express()
+
+app.use(session({
+  genid: () => {
+    return uuid()
+  },
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true
+}))
+
+app.use(logger('dev'))
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+app.use(cookieParser())
+app.use(express.static(path.join(__dirname, 'public')))
+
+// USES ROUTES
+app.use('/', index)
+//app.use('/orders', orders)
+
+const port = 5000
+app.listen(port, () => console.log(`Server started on port ${port}`))

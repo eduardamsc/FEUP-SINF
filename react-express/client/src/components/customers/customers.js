@@ -14,7 +14,7 @@ class Customers extends Component {
       .then(res => res.json())
       .then(customers => this.setState({customers}, () => console.log('Customers fetched..', customers)));
   }
-  
+
   render() {
     return (
       <div>

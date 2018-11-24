@@ -1,4 +1,4 @@
-/*const express = require('express')
+const express = require('express')
 const router = express.Router()
 const primavera = require('../primavera')
 
@@ -6,8 +6,8 @@ router.get('/', function(req, res){
   const query = "SELECT Data, Zona, Entidade, TipoDoc, NumDoc FROM CabecDoc WHERE TipoDoc='FA'"
   primavera.query(req.session.primavera.access_token, query)
   .then(response => {
-    console.log(response.data)
-    res.status(200).json(response.data.DataSet.Table)
+    console.log(JSON.parse(response))
+    res.status(200).json(JSON.parse(response).DataSet.Table)
   })
   .catch(error => {
     console.error(error)
@@ -15,4 +15,4 @@ router.get('/', function(req, res){
   })
 })
 
-module.exports = router*/
+module.exports = router

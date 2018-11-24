@@ -9,8 +9,8 @@ router.get('/', function(req, res){
 router.post('/login', function(req, res){
   primavera.token()
   .then(response =>{
-    req.session.primavera = response.data
-    res.status(200).json(response.data)
+    req.session.primavera = JSON.parse(response)
+    res.status(200).json(JSON.parse(response))
   })
 })
 

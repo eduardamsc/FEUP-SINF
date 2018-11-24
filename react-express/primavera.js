@@ -1,4 +1,4 @@
-const axios = require('axios')
+const request = require('request-promise')
 
 function token() {
   const URL = process.env.API_URL + '/token'
@@ -15,36 +15,29 @@ function token() {
     return encodeURIComponent(key) + '=' + encodeURIComponent(REQ_DATA[key])
   }).join('&')
 
-  return axios({
-    methods: 'POST',
+  return request.post({
     url: URL,
-    withCredentials: true,
-    crossDomain: true,
-    data: data,
+    body: data,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
   })
 }
 
-/*
-function query(bearer,query) {
+function rawQuery(bearer,query) {
   const URL = process.env.API_URL + '/Administrador/Consulta'
 
-  return axios({
-    methods: 'GET',
+  return request.get({
     url: URL,
-    withCredentials: true,
-    crossDomain: true,
-    data: query,
+    body: JSON.stringify(query),
     headers: {
       'Content-Type': "application/json",
       'Authorization': 'Bearer ' + bearer
     },
   })
-}*/
+}
 
 module.exports = {
   token: token,
-  //query: query
+  query: rawQuery
 }

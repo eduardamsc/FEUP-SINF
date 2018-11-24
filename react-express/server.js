@@ -11,6 +11,7 @@ const session = require('express-session')
 // REQUIRE ROUTS
 const index = require('./routes/index')
 const orders = require('./routes/orders')
+const customers = require('./routes/customers')
 
 const app = express()
 
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 // USES ROUTES
 app.use('/', index)
 app.use('/orders', orders)
+app.use('/customers', customers)
 
 const port = 5000
 app.listen(port, () => console.log(`Server started on port ${port}`))

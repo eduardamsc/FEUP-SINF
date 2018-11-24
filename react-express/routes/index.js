@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const primavera = require('../primavera')
+//const { User } = require('../database')
 
 router.get('/', function(req, res){
   res.send("Hello World")

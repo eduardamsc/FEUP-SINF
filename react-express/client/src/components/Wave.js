@@ -2,41 +2,6 @@ import React, { Component } from 'react';
 import { Table, NavLink } from 'reactstrap';
 import { NavLink as RRNavLink } from 'react-router-dom';
 
-const API_ENDPOINT = 'http://localhost:2018/WebApi';
-var token;
-
-export function makeRequest(body) {
-    let formData = new URLSearchParams();
-
-    for (var key in body) {
-      formData.append(key, body[key]);
-    }
-
-    return formData;
-};
-
-export function authenticate() {
-
-    return fetch(`${API_ENDPOINT}/token`, {
-        method: 'POST',
-        body: makeRequest(
-            {
-                username: 'FEUP',
-                password: 'qualquer1',
-                company: 'BELAFLOR',
-                instance: 'DEFAULT',
-                Line: 'Professional',
-                grant_type: 'password'
-            }
-        ),
-    }).then(function(response){
-        return response.json();
-    }).then(function(data) {
-        token = data.access_token;
-        console.log(token);
-
-    });
-}
 
 class Wave extends Component {
 
@@ -45,33 +10,23 @@ class Wave extends Component {
         this.state = {
             error: null,
             isLoaded: false,
-            companies: []
+            articles: []
         };
 
     }
 
   async componentDidMount() {
-      if(token == null){
-        await authenticate();
-        console.log("\nFEZ AUTHENTICATE")
-
-      }
-      const route = API_ENDPOINT + '/Administrador/ListaEmpresas';
-      console.log('Bearer ' + token);
-
-      fetch(route, {
-          headers: makeRequest({
-            'Authorization': 'Bearer ' + token,
-            'Content-Type': 'application/x-wwww-form-urlencoded'
-          }),
-        })
-        .then(function(response){
-            return response.json();
-        }).then(
+    
+      const route = 'http://localhost:5000/articles';
+      
+      fetch(route)
+          .then(res => res.json()
+          )
+          .then(
             (result) => {
               this.setState({
                 isLoaded: true,
-                companies: result
+                articles: result
               })
             });
 
@@ -79,14 +34,14 @@ class Wave extends Component {
   }
 
     render() {
-        const { companies } = this.state;
+        const { articles } = this.state;
 
         return (
             <div>
                 <ul>
-                    {companies.map(company => (
-                        <li key={company.name}>
-                        {company.name} {company.price}
+                    {articles.map(article => (
+                        <li key={article.Artigo}>
+                        {article.Artigo}
                         </li>
                     ))}
                 </ul>

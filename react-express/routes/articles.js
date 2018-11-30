@@ -3,7 +3,9 @@ const router = express.Router()
 const primavera = require('../primavera')
 
 router.get('/', function(req, res){
-  const query = "SELECT Data, Zona, Entidade, TipoDoc, NumDoc FROM CabecDoc WHERE TipoDoc='FA'"
+  const query = "SELECT Artigo FROM Artigo";
+  console.log(req.session);
+  
   primavera.query(req.session.primavera.access_token, query)
   .then(response => {
     //console.log(JSON.parse(response))

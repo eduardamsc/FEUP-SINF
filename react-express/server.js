@@ -10,9 +10,9 @@ const session = require('express-session')
 
 // REQUIRE ROUTS
 const index = require('./routes/index')
-const orders = require('./routes/orders')
+const articles = require('./routes/articles')
 const customers = require('./routes/customers')
-
+const cors = require('cors')
 const app = express()
 
 app.use(session({
@@ -24,6 +24,8 @@ app.use(session({
   saveUninitialized: true
 }))
 
+
+app.use(cors())
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -32,8 +34,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // USES ROUTES
 app.use('/', index)
-app.use('/orders', orders)
+app.use('/articles', articles)
 app.use('/customers', customers)
+app.use('/login', index)
 
 const port = 5000
 app.listen(port, () => console.log(`Server started on port ${port}`))

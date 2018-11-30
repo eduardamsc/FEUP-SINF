@@ -6,6 +6,14 @@ import Wave from './Wave';
 import ProductLocation from './ProductLocation';
 
 class MainContainer extends Component {
+      async componentDidMount() {
+        
+        const route = 'http://localhost:5000/login';
+      
+        fetch(route, {
+          method: "post"
+        });
+    }
 
   render() {
     return (

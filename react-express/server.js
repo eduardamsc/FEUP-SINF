@@ -12,6 +12,8 @@ const session = require('express-session')
 const index = require('./routes/index')
 const articles = require('./routes/articles')
 const customers = require('./routes/customers')
+const orders = require('./routes/orders')
+const warehouse = require('./routes/warehouse')
 const cors = require('cors')
 const app = express()
 
@@ -34,8 +36,10 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // USES ROUTES
 app.use('/', index)
+app.use('/orders', orders)
 app.use('/articles', articles)
 app.use('/customers', customers)
+app.use('/warehouse', warehouse)
 app.use('/login', index)
 
 const port = 5000

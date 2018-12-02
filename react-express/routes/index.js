@@ -17,6 +17,7 @@ router.post('/login', function(req, res){
     console.log(req.session.primavera.access_token);
     res.status(200).json(req.session.primavera);
   })
+  
 })
 
 module.exports = router

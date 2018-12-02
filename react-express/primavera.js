@@ -24,6 +24,31 @@ function token() {
   })
 }
 
+function deliveryNote(client, bearer) {
+  const URL = process.env.API_URL + '/Vendas/Docs/TransformDocument/ECL/A/1/000/false'
+  const REQ_DATA = {
+    TipoDoc: "GR",
+    Entidade: client,
+    DataDoc: new Date(),
+    DataVenc: new Date(),
+    Serie: "A",
+    TipoEntidade: "C"
+  }
+
+  const data = Object.keys(REQ_DATA).map(key => {
+    return encodeURIComponent(key) + '=' + encodeURIComponent(REQ_DATA[key])
+  }).join('&')
+
+  return request.post({
+    url: URL,
+    body: data,
+    headers: {
+      'Content-Type': "application/json",
+      'Authorization': 'Bearer ' + bearer
+    },
+  })
+}
+
 function rawQuery(bearer,query) {
   const URL = process.env.API_URL + '/Administrador/Consulta'
 
@@ -39,5 +64,6 @@ function rawQuery(bearer,query) {
 
 module.exports = {
   token: token,
-  query: rawQuery
+  query: rawQuery,
+  deliveryNote: deliveryNote
 }

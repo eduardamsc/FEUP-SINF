@@ -4,7 +4,7 @@ const primavera = require('../primavera')
 
 router.get('/', function(req, res){
 
-  const query = "SELECT * FROM ArmazemLocalizacoes WHERE Localizacao='" + req.body.localizacao + "'";
+  const query = "SELECT * FROM ArmazemLocalizacoes WHERE Localizacao='" + req.body.localizacao + "' AND Descricao='" + req.body.checkDigit + "'";
   console.log(req.session);
   
   primavera.query(req.session.primavera.access_token, query)

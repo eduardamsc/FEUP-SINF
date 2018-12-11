@@ -1,5 +1,83 @@
+
+.logo{
+  height: 60px;
+  width: auto;
+}
+ 
 .App {
   text-align: center;
+  background-color: white; 
+  padding: 40px;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-right: -50%;
+  margin:0;
+  position: absolute;
+  width: 50% !important;
+  border-radius: 30px;
+}
+
+
+
+
+@media only screen and (max-width: 767px) {
+  .App{
+    width: 80% !important;
+  }
+  .Welcome{
+    width: 80% !important;
+  }
+}
+@media only screen and (min-width: 767px) {
+  .App{
+    width: 50% !important;
+  }
+  .Welcome{
+    width: 50% !important;
+  }
+}
+.App h2{
+  margin-bottom: 30px;
+}
+.Welcome h2{
+  margin-bottom: 60px;
+}
+.description{
+  position: absolute;
+  top: 30%;
+  margin: auto;
+  padding: 2em;
+}
+.description h1{
+color:#F97300 ;
+}
+.description p{
+color:white;
+font-size: 20px;
+width: 50%;
+line-height: 1.5;
+}
+.description a{
+border:1px  solid #F97300;
+background:#F97300;
+color:#fff;
+margin-right: 20px;
+}
+.App button{
+  border:1px  solid #F97300;
+  background:#F97300;
+  color:#fff;
+  margin-right: 20px;
+  }
+
+.description a:hover{
+  background-color: white;
+  color:#F97300;
+}
+
+.form{
+  margin:0 auto; 
 }
 
 .App-logo {

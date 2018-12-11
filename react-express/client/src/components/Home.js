@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
-
+import {
+    Container,
+    Button,
+  } from 'reactstrap';
+  import '../Home.css';
 class Home extends Component {
     render() {
         return (
-            <div>
-                Home page!
+            <Container className="Welcome">
+            <div class="description ">
+                <h1>    Hello ,Welcome To Continent SINF
+                    <p>   Are you a picker? We are going to help you improve your work.
+                </p>   
+                <Button href="SignIn" className="btn btn-outline-secondary btn-lg">Sign In</Button>
+                   </h1>  
             </div>
+            </Container>
+           
         );
     }
 }

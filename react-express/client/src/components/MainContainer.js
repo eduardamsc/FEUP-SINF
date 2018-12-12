@@ -10,7 +10,8 @@ import PickedUnits from './PickedUnits';
 import GoodJob from './GoodJob';
 import SalesOrder from './SalesOrder';
 import Warehouse from './Warehouse';
-import Pickers from './Pickers';
+import Pickers from './Pickers'; 
+import Logo from '../assets/logo.png';
 
 class MainContainer extends Component {
       async componentDidMount() {
@@ -28,12 +29,9 @@ class MainContainer extends Component {
         <div>
           <Navbar color="light" light expand="md">
             <NavbarBrand href="/">
-            Home
+            <img className="logo" src={Logo} alt="logo"/>
             </NavbarBrand>
               <Nav className="ml-auto" navbar>
-                <NavItem>
-                  <NavLink to='/' tag={RRNavLink}>Home</NavLink>
-                </NavItem>
                 <NavItem>
                   <NavLink to="/wave" tag={RRNavLink}>Wave</NavLink>
                 </NavItem>

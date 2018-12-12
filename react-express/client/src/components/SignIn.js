@@ -1,34 +1,25 @@
 import React, { Component } from 'react';
-import {
-    Container, Col, Form,
-    FormGroup, Input,
-    Button,
-  } from 'reactstrap';
+import { Container, Col, Form, FormGroup, Input, Button } from 'reactstrap';
   
-class SignUp extends Component {
+class SignIn extends Component {
     constructor(props) {
         super(props);
           this.state = {
-          'name': '',
-          'email': '',
-          'password': '',
-          validate: {
-            emailState: '',
-          },
+          id:'',
+          name: '',
+          password: '',
         }
         this.handleChange = this.handleChange.bind(this);
       }
+
+    componentDidMount(){
+      fetch('/login')
+      .then(res => res.json())
+      .then(
+        (result)
+      )
+    }
     
-      validateEmail(e) {
-        const emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        const { validate } = this.state
-          if (emailRex.test(e.target.value)) {
-            validate.emailState = 'has-success'
-          } else {
-            validate.emailState = 'has-danger'
-          }
-          this.setState({ validate })
-        }
     
       handleChange = async (event) => {
         const { target } = event;
@@ -38,11 +29,11 @@ class SignUp extends Component {
           [ name ]: value,
         });
       }
-    
-      submitForm(e) {
-        e.preventDefault();
-        console.log(`Email: ${ this.state.email }`)
+
+      handleLogin(){
+        this.setState()
       }
+
     render() {
         return (
           <Container className="App">
@@ -51,10 +42,10 @@ class SignUp extends Component {
               <Col>
                 <FormGroup>
                   <Input
-                    type="email"
-                    name="email"
-                    id="exampleEmail"
-                    placeholder="Email"
+                    type="username"
+                    name="username"
+                    id="exampleUsername"
+                    placeholder="Username"
                   />
                 </FormGroup>
               </Col>
@@ -68,10 +59,10 @@ class SignUp extends Component {
                   />
                 </FormGroup>
               </Col>
-              <Button className="btn btn-outline-secondary btn-lg">Sign In</Button>
+              <Button className="btn btn-outline-secondary btn-lg" onClick={this.handleLogin}>Sign In</Button>
             </Form>
           </Container>
         );
     }
 }
-    export default SignUp;
+    export default SignIn;

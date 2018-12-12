@@ -22,6 +22,7 @@ const deliveryNote = require('./routes/deliveryNote')
 const checkDigit = require('./routes/checkDigit')
 
 const cors = require('cors')
+require('./database')
 const app = express()
 
 app.use(session({

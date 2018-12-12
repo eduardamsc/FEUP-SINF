@@ -5,6 +5,10 @@ import Home from './Home';
 import Wave from './Wave';
 import SignIn from './SignIn';
 import ProductLocation from './ProductLocation';
+import ProductUnits from './ProductUnits';
+import PickedUnits from './PickedUnits';
+import GoodJob from './GoodJob';
+import SalesOrder from './SalesOrder';
 
 class MainContainer extends Component {
       async componentDidMount() {
@@ -40,6 +44,10 @@ class MainContainer extends Component {
           <Route exact path="/wave" component={Wave} />
           <Route exact path="/signIn" component={SignIn} />
           <Route path="/wave/productLocation" component={ProductLocation} />
+          <Route path="/wave/productUnits" component={ProductUnits} />
+          <Route path="/wave/pickedUnits" component={PickedUnits} />
+          <Route path="/goodJob" component={GoodJob} />
+          <Route path="/salesOrder" component={SalesOrder} />
         </div>
       </BrowserRouter>
     );

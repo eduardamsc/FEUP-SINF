@@ -8,7 +8,7 @@ class Home extends Component {
     render() {
         return (
             <Container className="Welcome">
-            <div class="description ">
+            <div className="description ">
                 <h1>    Hello ,Welcome To Continent SINF
                     <p>   Are you a picker? We are going to help you improve your work.
                 </p>   

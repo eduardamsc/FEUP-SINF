@@ -4,26 +4,34 @@ import { InputGroup, Input, Button } from 'reactstrap';
 class ProductLocation extends Component {
     render() {
         return (
-            <div>
-              <h4>Product Location</h4>
-              <h5>Product XPTO</h5>
-              <h5>Date</h5>
-              <h3>Enter location check digit:</h3>
-              <div className="inputGroup">
-                <InputGroup size="lg">
-                  <Input />
-                </InputGroup>
-                <InputGroup size="lg">
-                  <Input />
-                </InputGroup>
-                <InputGroup size="lg">
-                  <Input />
-                </InputGroup>
-                <InputGroup size="lg">
-                  <Input />
-                </InputGroup>
+            <div className="container productLocation">
+              <div className="row title">
+                <h4>Product Location</h4>
               </div>
-              <Button color="danger">OK</Button>
+              <div className="row information">
+                <h5 className="col-11">Product XPTO</h5>
+                <h5 className="col-1">Date</h5>
+              </div>
+              <div className="row justify-content-center">
+                <h3>Enter location's check digit:</h3>
+              </div>
+             
+              <div className="inputGroup row container justify-content-center">
+                <InputGroup className="col-3"size="lg">
+                  <Input />
+                </InputGroup>
+                <InputGroup className="col-3" size="lg">
+                  <Input />
+                </InputGroup>
+                <InputGroup className="col-3" size="lg">
+                  <Input />
+                </InputGroup>
+                <InputGroup className="col-3" size="lg">
+                  <Input />
+                </InputGroup>
+                <Button className="submit"color="danger">OK</Button>
+              </div>
+              
             </div>
         );
     }

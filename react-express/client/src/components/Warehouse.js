@@ -103,18 +103,18 @@ class Warehouse extends Component {
                   </div>
                   <div className="row">
                     <div className="col-1">
-                        <img alt-="arrow"  src={LeftArrow} className="leftArrow"/>
+                        <img alt="arrow"  src={LeftArrow} className="leftArrow"/>
                     </div>
                     <div className="col-1">
-                        <img alt-="arrow"  src={RightArrow} className="leftArrow"/>
+                        <img alt="arrow"  src={RightArrow} className="leftArrow"/>
                     </div>
                     <div className="col-1">
                     </div>
                     <div className="col-1">
-                        <img alt-="arrow" src={LeftArrow} className="leftArrow2"/>
+                        <img alt="arrow" src={LeftArrow} className="leftArrow2"/>
                     </div>
                     <div className="col-1">
-                        <img alt-="arrow" src={RightArrow} className="leftArrow2"/>
+                        <img alt="arrow" src={RightArrow} className="leftArrow2"/>
                     </div>
                 </div>
                 <div className="row">

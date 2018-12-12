@@ -1,3 +1,7 @@
+body{
+  background-color: lightblue!important;
+}
+
 .logo{
   height: 60px;
   width: auto;
@@ -5,7 +9,7 @@
  
 .App {
   text-align: center;
-  background-color: white; 
+  background-color: white;
   padding: 40px;
   top:50%;
   left: 50%;
@@ -46,30 +50,30 @@
   padding: 2em;
 }
 .description h1{
-color:#F97300 ;
+color: rgb(56,138,154) ;
 }
 .description p{
-color:white;
+color:#282c34;
 font-size: 20px;
 width: 50%;
 line-height: 1.5;
 }
 .description a{
-border:1px  solid #F97300;
-background:#F97300;
+border:1px  solid rgb(56,138,154);
+background:rgb(56,138,154);
 color:#fff;
 margin-right: 20px;
 }
 .App button{
-  border:1px  solid #F97300;
-  background:#F97300;
+  border:1px  solid rgb(56,138,154);
+  background:rgb(56,138,154);
   color:#fff;
   margin-right: 20px;
   }
 
 .description a:hover{
   background-color: white;
-  color:#F97300;
+  color:rgb(56,138,154);
 }
 
 .form{
@@ -145,6 +149,10 @@ margin-right: 20px;
   text-align: center;
   display: flex;
 }
+
+.salesOrderBtn p{
+  font-weight: bold;
+}
 .round {
   position: relative;
 }
@@ -186,7 +194,7 @@ margin-right: 20px;
   opacity: 1;
 }
 .card-body{
-  background-color: lightgray;
+  background-color: white;
 }
 
 .salesOrder{
@@ -198,4 +206,48 @@ margin-right: 20px;
   margin:0;
   position: absolute;
   width: 70% !important;
+}
+
+.smile{
+  width: 20%;
+  height: 20%;
+  margin-top: 15%;
+}
+
+.infoJob{
+  margin-top: 3%;
+}
+
+.goodJob p{
+  font-weight: bold;
+  font-size: 20px;
+  color: #6E757c;
+}
+.warehouse{
+  margin-top: 15%;
+}
+.warehouse2{
+  margin-top: 10px;
+}
+.square{
+  background-color: white;
+  padding: 40px;
+  margin-right: 10px;
+}
+.picker{
+  background-color: white;
+  padding: 40px 20px 100px 20px;
+  margin-right: 10px;
+}
+.leftArrow{
+  margin-left: 10px;
+}
+.leftArrow2{
+  margin-left: 30px;
+}
+.warehouseDiv p{
+  font-size: 20px;
+  margin-left: 40px;
+  font-weight: bold;
+  color: #6E757c;
 }

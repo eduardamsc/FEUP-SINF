@@ -3,7 +3,6 @@ import {
     Container,
     Button,
   } from 'reactstrap';
-  import '../Home.css';
 class Home extends Component {
     render() {
         return (

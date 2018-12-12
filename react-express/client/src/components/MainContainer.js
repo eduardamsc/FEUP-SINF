@@ -9,6 +9,8 @@ import ProductUnits from './ProductUnits';
 import PickedUnits from './PickedUnits';
 import GoodJob from './GoodJob';
 import SalesOrder from './SalesOrder';
+import Warehouse from './Warehouse';
+import Pickers from './Pickers';
 
 class MainContainer extends Component {
       async componentDidMount() {
@@ -48,6 +50,8 @@ class MainContainer extends Component {
           <Route path="/wave/pickedUnits" component={PickedUnits} />
           <Route path="/goodJob" component={GoodJob} />
           <Route path="/salesOrder" component={SalesOrder} />
+          <Route path="/warehouse" component={Warehouse} />
+          <Route path="/pickers" component={Pickers} />
         </div>
       </BrowserRouter>
     );

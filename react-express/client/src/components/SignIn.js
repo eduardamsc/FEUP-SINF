@@ -68,7 +68,7 @@ class SignUp extends Component {
                   />
                 </FormGroup>
               </Col>
-              <Button className="btn btn-outline-secondary btn-lg">Sign Up</Button>
+              <Button className="btn btn-outline-secondary btn-lg">Sign In</Button>
             </Form>
           </Container>
         );

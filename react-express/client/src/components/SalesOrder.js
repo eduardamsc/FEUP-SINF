@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Collapse, Button, CardBody, Card,Input,Label,FormGroup } from 'reactstrap';
+import { Collapse, Button, CardBody, Card,Input,FormGroup } from 'reactstrap';
 
 class SalesOrder extends Component {
     constructor(props) {
@@ -15,7 +15,7 @@ class SalesOrder extends Component {
       render() {
         return (
           <div className="salesOrder container justify-content-center">
-            <Button className="salesOrderBtn" color="primary" onClick={this.toggle}>
+            <Button className="salesOrderBtn" onClick={this.toggle}>
                 <div className="d-flex justify-content-between">
                     <div class="round">
                         <Input  id="checkbox" addon type="checkbox" aria-label="Checkbox for following text input" />

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { InputGroup, Input, Button } from 'reactstrap';
+import { Button } from 'reactstrap';
 
 class ProductUnits extends Component {
     render() {

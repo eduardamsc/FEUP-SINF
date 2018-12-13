@@ -7,46 +7,10 @@ class Wave extends Component {
 
   constructor(props) {
       super(props);
-        this.state = {
-            error: null,
-            isLoaded: false,
-            articles: []
-        };
-
     }
 
-  async componentDidMount() {
-    
-      const route = 'http://localhost:5000/articles';
-      
-      fetch(route)
-          .then(res => res.json()
-          )
-          .then(
-            (result) => {
-              this.setState({
-                isLoaded: true,
-                articles: result
-              })
-            });
-
-
-  }
-
     render() {
-        const { articles } = this.state;
-
         return (
-            <div>
-                <ul>
-                    {articles.map(article => (
-                        <li key={article.Artigo}>
-                        {article.Artigo}
-                        </li>
-                    ))}
-                </ul>
-
-
           <div>
             <div>
                 <h4>Picking Wave to be prepared</h4>
@@ -79,8 +43,6 @@ class Wave extends Component {
                 </tr>
               </tbody>
             </Table>
-          </div>
-
           </div>
         );
     }

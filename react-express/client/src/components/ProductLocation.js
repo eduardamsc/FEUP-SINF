@@ -12,7 +12,7 @@ class ProductLocation extends Component {
                 <h5 className="col-11">Product XPTO</h5>
                 <h5 className="col-1">Date</h5>
               </div>
-              <div className="row justify-content-center">
+              <div className="row justify-content-center enter">
                 <h3>Enter location's check digit:</h3>
               </div>
              

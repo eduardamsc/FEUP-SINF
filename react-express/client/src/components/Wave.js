@@ -9,10 +9,10 @@ class Wave extends Component {
         return (
             <div className="container productLocation">
               <div className="row title">
-                  <h4>Picking Wave to be prepared</h4>
+                  <h4>Sales Order to be prepared</h4>
               </div>
               <div className="row information">
-                <h5 className="col-11">Picking Wave 1</h5>
+                <h5 className="col-11">Sales Order 1</h5>
                 <h5 className="col-1">Date</h5>
               </div>
               <div class="tablePW">

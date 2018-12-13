@@ -33,12 +33,23 @@ class SignIn extends Component {
             },
             body: JSON.stringify(this.state),
         })
-        .then(response => response.json());
+        .then(response => {
+          if(response.status === 200){
+            this.props.history.push('/wave');
+          }
+          else{
+            const error = new Error(response.error);
+            throw error;
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          alert('Error logging in please try again');
+        })
     }
 
     render() {
       const { user } = this.state;
-      
         return (
          <Container className="App">
             <h2>Sign In</h2>
@@ -57,6 +68,7 @@ class SignIn extends Component {
                 <FormGroup>
                   <Input
                     name="password"
+                    type="password"
                     placeholder="Password"
                     value={this.state.password}
                     onChange={this.handleInputChange}

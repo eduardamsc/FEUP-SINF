@@ -8,7 +8,7 @@ import ProductLocation from './ProductLocation';
 import ProductUnits from './ProductUnits';
 import PickedUnits from './PickedUnits';
 import GoodJob from './GoodJob';
-import SalesOrder from './SalesOrder';
+import SalesOrders from './SalesOrders';
 import Warehouse from './Warehouse';
 import Pickers from './Pickers';
 import Logo from '../assets/logo.png';
@@ -77,7 +77,7 @@ class MainContainer extends Component {
           <Route path="/wave/productUnits" component={ProductUnits} />
           <Route path="/wave/pickedUnits" component={PickedUnits} />
           <Route path="/goodJob" component={GoodJob} />
-          <Route path="/salesOrder" component={SalesOrder} />
+          <Route path="/salesOrders" component={SalesOrders} />
           <Route path="/warehouse" component={Warehouse} />
           <Route path="/pickers" component={Pickers} />
         </div>

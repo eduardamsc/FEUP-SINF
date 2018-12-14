@@ -25,24 +25,28 @@ router.post('/login', function(req, res){
       res.status(422).send('Unprocessable Entity. Wrong credentials')
       return
     }
-    req.session.user = user
-    res.status(200).json(user)
 
-    /*primavera.token()
+    primavera.token()
     .then(response => {
       req.session.user = user
-      req.session.primavera = response.data
-      res.status(200).json(user)
+      req.session.primavera = JSON.parse(response).access_token
+      var data = {
+        user: user,
+        primavera_token: JSON.parse(response).access_token
+      }
+      res.status(200).json(data)
     })
     .catch(error => {
       console.error(error)
       res.status(500).send('Internal Server Error.')
-    })*/
+    })
   })
   .catch(error => {
     console.error(error)
     res.status(500).send('Internal Server Error.')
   })
+
+
 })
 
 module.exports = router

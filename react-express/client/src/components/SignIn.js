@@ -35,6 +35,7 @@ class SignIn extends Component {
         })
         .then(response => {
           if(response.status === 200){
+            this.props.onChildSetAuthenticated();
             this.props.history.push('/wave');
           }
           else{
@@ -49,7 +50,6 @@ class SignIn extends Component {
     }
 
     render() {
-      const { user } = this.state;
         return (
          <Container className="App">
             <h2>Sign In</h2>

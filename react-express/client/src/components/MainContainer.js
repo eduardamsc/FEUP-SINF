@@ -14,8 +14,45 @@ import Pickers from './Pickers';
 import Logo from '../assets/logo.png';
 
 class MainContainer extends Component {
-  
+    constructor(props) {
+         super(props);
+         this.state = {
+             isAuthenticated: false
+         };
+     }
+
+   handleChildSetAuthenticated = () =>{
+       this.setState({
+           isAuthenticated: true
+       });
+   }
+
+   handleChildUnsetAuthenticated = () =>{
+       this.setState({
+           isAuthenticated: false
+       });
+   }
+
+   handleGetIsAuthenticated = () => {
+       return this.state.isAuthenticated;
+   }
+
+
   render() {
+    let navbar;
+     if (this.handleGetIsAuthenticated()) {
+       navbar = <Nav className="ml-auto" navbar>
+         <NavItem>
+           <NavLink to="/wave" tag={RRNavLink}>Hi, picker!</NavLink>
+         </NavItem>
+         <NavItem>
+           <NavLink className="logout" to='/' tag={RRNavLink} onClick={this.handleLogout}>Logout</NavLink>
+         </NavItem>
+       </Nav>;
+     } else {
+       navbar = null;
+     }
+
     return (
       <BrowserRouter>
         <div>
@@ -23,18 +60,15 @@ class MainContainer extends Component {
             <NavbarBrand href="/">
             <img className="logo" src={Logo} alt="logo"/>
             </NavbarBrand>
-              <Nav className="ml-auto" navbar>
-                <NavItem>
-                  <NavLink to="/wave" tag={RRNavLink}>Wave</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink className="logout" to='/' tag={RRNavLink}>Logout</NavLink>
-                </NavItem>
-              </Nav>
+            {navbar}
           </Navbar>
           <Route exact path="/" component={Home} />
+          <Route path='/signIn' render={(props)=>
+                          <SignIn {...props}
+                              onChildSetAuthenticated={this.handleChildSetAuthenticated}
+                              onGetIsAuthenticated={this.handleGetIsAuthenticated}
+                              onChildUnsetAuthenticated={this.handleChildUnsetAuthenticated}/>}/>
           <Route exact path="/wave" component={Wave} />
-          <Route exact path="/signIn" component={SignIn} />
           <Route path="/wave/productLocation" component={ProductLocation} />
           <Route path="/wave/productUnits" component={ProductUnits} />
           <Route path="/wave/pickedUnits" component={PickedUnits} />

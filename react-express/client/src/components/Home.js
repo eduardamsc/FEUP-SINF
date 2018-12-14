@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import {
-    Container,
-    Button,
-  } from 'reactstrap';
+import { Container, Button } from 'reactstrap';
 
 class Home extends Component {
+    componentDidMount(){
+      this.props.onChildUnsetAuthenticated();
+    }
+
     render() {
         return (
             <Container className="Welcome">

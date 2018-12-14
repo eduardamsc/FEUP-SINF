@@ -46,7 +46,7 @@ class MainContainer extends Component {
            <NavLink to="/wave" tag={RRNavLink}>Hi, picker!</NavLink>
          </NavItem>
          <NavItem>
-           <NavLink className="logout" to='/' tag={RRNavLink} onClick={this.handleLogout}>Logout</NavLink>
+           <NavLink className="logout" to='/' tag={RRNavLink}>Logout</NavLink>
          </NavItem>
        </Nav>;
      } else {
@@ -62,7 +62,11 @@ class MainContainer extends Component {
             </NavbarBrand>
             {navbar}
           </Navbar>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" render={(props)=>
+                          <Home {...props}
+                              onChildSetAuthenticated={this.handleChildSetAuthenticated}
+                              onGetIsAuthenticated={this.handleGetIsAuthenticated}
+                              onChildUnsetAuthenticated={this.handleChildUnsetAuthenticated}/>}/>
           <Route path='/signIn' render={(props)=>
                           <SignIn {...props}
                               onChildSetAuthenticated={this.handleChildSetAuthenticated}

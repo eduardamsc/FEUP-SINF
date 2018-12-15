@@ -36,7 +36,7 @@ class SignIn extends Component {
         .then(response => {
           if(response.status === 200){
             this.props.onChildSetAuthenticated();
-            this.props.history.push('/wave');
+            this.props.history.push('/salesOrders');
           }
           else{
             const error = new Error(response.error);

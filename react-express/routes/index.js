@@ -28,13 +28,19 @@ router.post('/login', function(req, res){
 
     primavera.token()
     .then(response => {
-      req.session.user = user
-      req.session.primavera = JSON.parse(response).access_token
-      var data = {
-        user: user,
-        primavera_token: JSON.parse(response).access_token
-      }
-      res.status(200).json(data)
+      req.session.user = user;
+      req.session.primavera = JSON.parse(response);
+      req.session.save((err) => {
+                      if (!err) {
+                        console.log(JSON.parse(response));
+                        var data = {
+                          user: user,
+                          primavera_token: JSON.parse(response)
+                        };
+                        res.status(200).json(data);
+                      }
+                  });
+
     })
     .catch(error => {
       console.error(error)

@@ -5,14 +5,42 @@ class SalesOrder extends Component {
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
-        this.state = { collapse: false };
+        this.state = {
+          collapse: false,
+          salesOrders: []
+        };
       }
-    
+
+      componentDidMount() {
+        const route = 'http://localhost:5000/salesOrders';
+
+        fetch(route)
+        .then(res => res.json())
+        .then(
+            (result) => {
+              this.setState({
+                isLoaded: true,
+                salesOrders: result.DataSet.Table
+              });
+            },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+            (error) => {
+              this.setState({
+                isLoaded: true,
+                error
+              });
+            }
+        )
+      }
+
       toggle() {
         this.setState({ collapse: !this.state.collapse });
       }
-    
+
       render() {
+        const { salesOrders } = this.state;
         return (
           <div className="salesOrder container justify-content-center">
             <Button className="salesOrderBtn" onClick={this.toggle}>
@@ -42,6 +70,13 @@ class SalesOrder extends Component {
                 </CardBody>
               </Card>
             </Collapse>
+            <ul>
+          {salesOrders.map(salesOrder => (
+            <li key={salesOrder.Entidade}>
+              {salesOrder.Artigo} {salesOrder.Quantidade}
+            </li>
+          ))}
+        </ul>
           </div>
         );
       }

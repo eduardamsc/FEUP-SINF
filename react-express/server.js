@@ -25,17 +25,23 @@ const cors = require('cors')
 require('./database')
 const app = express()
 
+const corsOptions = {
+  origin: 'http://localhost:3000', //the port my react app is running on.
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 app.use(session({
   genid: () => {
     return uuid()
   },
   secret: process.env.SECRET,
-  resave: false,
+  resave: true,
   saveUninitialized: true
 }))
 
 
-app.use(cors())
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))

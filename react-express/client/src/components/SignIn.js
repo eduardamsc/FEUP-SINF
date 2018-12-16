@@ -30,7 +30,12 @@ class SignIn extends Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': 'true',
+                'Access-Control-Allow-Origin': '*',
+
             },
+            credentials: "include",
+
             body: JSON.stringify(this.state),
         })
         .then(response => {

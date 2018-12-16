@@ -14,7 +14,16 @@ class SalesOrder extends Component {
       componentDidMount() {
         const route = 'http://localhost:5000/salesOrders';
 
-        fetch(route)
+        fetch(route, {
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Credentials': 'true',
+              'Access-Control-Allow-Origin': '*',
+
+          },
+          credentials: "include",
+        })
         .then(res => res.json())
         .then(
             (result) => {
@@ -73,7 +82,7 @@ class SalesOrder extends Component {
             <ul>
           {salesOrders.map(salesOrder => (
             <li key={salesOrder.Entidade}>
-              {salesOrder.Artigo} {salesOrder.Quantidade}
+              {salesOrder.Artigo} {salesOrder.Quantidade} {salesOrder.Localizacao}
             </li>
           ))}
         </ul>

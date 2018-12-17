@@ -17,7 +17,7 @@ router.post('/login', function(req, res){
   }
 
   User.findOne({
-    attributes: ['id', 'username', 'name'],
+    attributes: ['id', 'username', 'name', 'userType'],
     where: { username: req.body.username, password: req.body.password }
   })
   .then(user => {
@@ -28,18 +28,17 @@ router.post('/login', function(req, res){
 
     primavera.token()
     .then(response => {
-      req.session.user = user;
+      req.session.user = user.dataValues;
       req.session.primavera = JSON.parse(response);
       req.session.save((err) => {
-                      if (!err) {
-                        console.log(JSON.parse(response));
-                        var data = {
-                          user: user,
-                          primavera_token: JSON.parse(response)
-                        };
-                        res.status(200).json(data);
-                      }
-                  });
+          if (!err) {
+            var data = {
+              user: user,
+              primavera_token: JSON.parse(response)
+            };
+            res.json(data);
+          }
+      });
 
     })
     .catch(error => {

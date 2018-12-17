@@ -28,7 +28,7 @@ class SignIn extends Component {
         fetch(route, {
             method: 'POST',
             headers: {
-                'Accept': 'application/json',
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Credentials': 'true',
                 'Access-Control-Allow-Origin': '*',
@@ -38,21 +38,20 @@ class SignIn extends Component {
 
             body: JSON.stringify(this.state),
         })
-        .then(response => {
-          console.log(response);
-          if(response.status === 200){
+        .then((response) => response.json())
+          .then((responseJson) => {
+            console.log(responseJson.user);;
             this.props.onChildSetAuthenticated();
-            this.props.history.push('/salesOrders');
-          }
-          else{
-            const error = new Error(response.error);
-            throw error;
-          }
-        })
-        .catch(err => {
-          console.error(err);
-          alert('Error logging in please try again');
-        })
+            if(responseJson.user.userType == 'manager')
+              this.props.history.push('/salesOrders');
+            else
+              this.props.history.push('/salesOrderToBePrepared');
+
+          })
+          .catch((error) => {
+            console.error(error);
+            alert('Error logging in please try again');
+          });
     }
 
     render() {

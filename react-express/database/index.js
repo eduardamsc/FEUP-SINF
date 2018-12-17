@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize')
 const UserModel = require('./models/user')
+const AssignSalesOrderModel = require('./models/assignSalesOrder')
+
 
 const sequelize = new Sequelize('server', 'admin', 'sqladmin', {
   host: 'localhost',
@@ -16,6 +18,7 @@ const sequelize = new Sequelize('server', 'admin', 'sqladmin', {
 })
 
 const User = UserModel(sequelize, Sequelize)
+const AssignSalesOrder = AssignSalesOrderModel(sequelize, Sequelize)
 
 sequelize
   .authenticate()
@@ -36,7 +39,14 @@ sequelize
       { name: 'Luis Saraiva', userType: 'picker', username: 'lsaraiva', password: '12345678' },
       { name: 'Mariana Silva', userType: 'picker', username: 'msilva', password: '12345678' },
     ])
+
+    AssignSalesOrder.bulkCreate([
+      { username_picker: 'fcerquinho',  id_salesOrder: '4b2b5c51-f3e3-11e8-bd69-080027b49706'},
+      { username_picker: 'fpauperio',  id_salesOrder: '8799f449-f3e7-11e8-bd69-080027b49706'},
+    ])
   })
+
+  
 
 module.exports = {
   User

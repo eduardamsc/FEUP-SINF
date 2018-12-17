@@ -21,7 +21,8 @@ router.get('/', function(req, res){
           artigos: [],
           entidade: response[i].Entidade,
           data: data,
-          index: salesOrders.length+1
+          index: salesOrders.length+1, 
+          IdCabecDoc: response[i].IdCabecDoc 
         };
         var artigo = {
           nome: response[i].Artigo,

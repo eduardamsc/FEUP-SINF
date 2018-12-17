@@ -40,9 +40,9 @@ class SignIn extends Component {
         })
         .then((response) => response.json())
           .then((responseJson) => {
-            console.log(responseJson.user);;
+            console.log(responseJson.user);
             this.props.onChildSetAuthenticated();
-            if(responseJson.user.userType == 'manager')
+            if(responseJson.user.userType === 'manager')
               this.props.history.push('/salesOrders');
             else
               this.props.history.push('/salesOrderToBePrepared');

@@ -5,9 +5,11 @@ const { User } = require('../database')
 
 router.get('/', function(req, res){
 
-User.findAll()
+User.findAll({
+  where: {userType: 'picker'}
+  })
     .then(response => {
-    
+
         console.log(response);
         res.status(200).json(response)
     })

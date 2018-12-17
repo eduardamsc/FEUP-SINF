@@ -3,7 +3,7 @@ const request = require('request-promise')
 function token() {
   const URL = process.env.API_URL + '/token'
   const REQ_DATA = {
-    username: process.env.USERNAME,
+    username: process.env.USER,
     password: process.env.PASSWORD,
     company: process.env.COMPANY,
     instance: process.env.INSTANCE,

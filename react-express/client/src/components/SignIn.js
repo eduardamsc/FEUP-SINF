@@ -39,6 +39,7 @@ class SignIn extends Component {
             body: JSON.stringify(this.state),
         })
         .then(response => {
+          console.log(response);
           if(response.status === 200){
             this.props.onChildSetAuthenticated();
             this.props.history.push('/salesOrders');

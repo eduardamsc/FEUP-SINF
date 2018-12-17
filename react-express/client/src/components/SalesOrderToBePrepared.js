@@ -26,7 +26,6 @@ class SalesOrderToBePrepared extends Component {
         })
         .then((response) => response.json())
           .then((responseJson) => {
-            console.log(responseJson);
             this.setState({
               isLoaded: true,
               products: responseJson.products,
@@ -78,7 +77,7 @@ class SalesOrderToBePrepared extends Component {
                 <NavLink to="/salesOrderToBePrepared/productLocation" tag={RRNavLink}> Start Picking</NavLink>
                </Button>
               </div>
-            
+
           </div>
         );
     }

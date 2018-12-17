@@ -28,7 +28,6 @@ class SalesOrder extends Component {
         .then(res => res.json())
         .then(
             (result) => {
-              console.log(result);
               this.setState({
                 isLoaded: true,
                 salesOrders: result.salesOrders,
@@ -54,16 +53,13 @@ class SalesOrder extends Component {
 
       render() {
         const { salesOrders, pickers } = this.state;
-        console.log(salesOrders);
         return (
           <div className="salesOrder container justify-content-center">
 
             {Object.keys(salesOrders).map((key, index) =>
               <ListGroupCollapse key={index} cat={salesOrders[key]} pickers={pickers} />
             )}
-            {pickers.map(picker => (
-                <p>{picker.nome}</p>
-            ))}
+
 
           </div>
         );

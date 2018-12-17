@@ -5,4 +5,3 @@ module.exports = (sequelize, type) => {
       id_salesOrder: { type: type.INTEGER, allowNull: false },
     })
   }
-  

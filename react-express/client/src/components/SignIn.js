@@ -40,7 +40,6 @@ class SignIn extends Component {
         })
         .then((response) => response.json())
           .then((responseJson) => {
-            console.log(responseJson.user);
             this.props.onChildSetAuthenticated(responseJson.user.username, responseJson.user.userType);
             if(responseJson.user.userType === 'manager')
               this.props.history.push('/salesOrders');
@@ -49,7 +48,6 @@ class SignIn extends Component {
 
           })
           .catch((error) => {
-            console.error(error);
             alert('Error logging in please try again');
           });
     }

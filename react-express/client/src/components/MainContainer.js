@@ -17,13 +17,17 @@ class MainContainer extends Component {
     constructor(props) {
          super(props);
          this.state = {
-             isAuthenticated: false
+             isAuthenticated: false,
+             username: '',
+             userType: ''
          };
      }
 
-   handleChildSetAuthenticated = () =>{
+   handleChildSetAuthenticated = (username, userType) =>{
        this.setState({
-           isAuthenticated: true
+           isAuthenticated: true,
+           username: username,
+           userType: userType
        });
    }
 
@@ -40,16 +44,25 @@ class MainContainer extends Component {
 
   render() {
     let navbar;
-     if (this.handleGetIsAuthenticated()) {
+     if (this.handleGetIsAuthenticated() && this.state.userType === 'picker') {
        navbar = <Nav className="ml-auto" navbar>
          <NavItem>
-           <NavLink to="/wave" tag={RRNavLink}>Hi, picker!</NavLink>
+            <NavLink to="/salesOrderToBePrepared" tag={RRNavLink}>Hi, {this.state.username}!</NavLink>
          </NavItem>
          <NavItem>
            <NavLink className="logout" to='/' tag={RRNavLink}>Logout</NavLink>
          </NavItem>
        </Nav>;
-     } else {
+     } else if (this.handleGetIsAuthenticated() && this.state.userType === 'manager'){
+      navbar = <Nav className="ml-auto" navbar>
+      <NavItem>
+         <NavLink to="/salesOrders" tag={RRNavLink}>Hi, {this.state.username}!</NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink className="logout" to='/' tag={RRNavLink}>Logout</NavLink>
+      </NavItem>
+    </Nav>;
+     }else {
        navbar = null;
      }
 

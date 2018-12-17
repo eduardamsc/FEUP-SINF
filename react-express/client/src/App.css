@@ -148,6 +148,10 @@ margin-right: 20px;
   width: 100%;
   text-align: center;
   display: flex;
+  background-color: white !important;
+  color: #6c757d !important;
+
+  border-color: white !important;
 }
 
 .salesOrderBtn p{
@@ -258,4 +262,14 @@ margin-right: 20px;
 .tablePW{
   background-color: #f8f9fa !important;
   border-radius: 5px;
+}
+.list-group-item{
+  padding: 0 !important;
+  background-color: rgb(232,232,232) !important;
+  color: #6c757d !important;
+
+
+}
+.collapse.show p {
+  margin: 15px !important;
 }

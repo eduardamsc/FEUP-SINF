@@ -59,6 +59,15 @@ class MainContainer extends Component {
          <NavLink to="/salesOrders" tag={RRNavLink}>Hi, {this.state.username}!</NavLink>
       </NavItem>
       <NavItem>
+         <NavLink to="/salesOrders" tag={RRNavLink}>Sales Orders</NavLink>
+      </NavItem>
+      <NavItem>
+         <NavLink to="/pickers" tag={RRNavLink}>Pickers</NavLink>
+      </NavItem>
+      <NavItem>
+         <NavLink to="/warehouse" tag={RRNavLink}>Warehouse</NavLink>
+      </NavItem>
+      <NavItem>
         <NavLink className="logout" to='/' tag={RRNavLink}>Logout</NavLink>
       </NavItem>
     </Nav>;

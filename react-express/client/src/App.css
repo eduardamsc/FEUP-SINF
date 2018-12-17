@@ -239,9 +239,16 @@ margin-right: 20px;
   margin-right: 10px;
 }
 .picker{
-  background-color: white;
-  padding: 40px 20px 100px 20px;
-  margin-right: 10px;
+  background-color: none;
+
+}
+.picker img{
+  height: 80px;
+  width: auto;
+}
+.pickers h4{
+  margin-top: 5%;  
+  margin-bottom: 5%;
 }
 .leftArrow{
   margin-left: 10px;

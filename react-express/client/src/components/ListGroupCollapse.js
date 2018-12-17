@@ -7,7 +7,8 @@ class ListGroupCollapse extends React.Component {
     this.handlePickerSubmit = this.handlePickerSubmit.bind(this);
     this.handleChangePicker = this.handleChangePicker.bind(this);
     this.toggle = this.toggle.bind(this);
-    this.state = {collapse: false, picker: '', index: this.props.cat.index};
+    this.state = {collapse: false, picker: '', index: this.props.cat.index, username_picker: this.props.cat.username_picker};
+console.log(this.state.username_picker);
   }
 
   toggle() {
@@ -44,8 +45,10 @@ class ListGroupCollapse extends React.Component {
       });
   }
 
-  handleChangePicker() {
+  handleChangePicker(event) {
     document.getElementById(this.state.index).querySelector("#checkbox").checked = false;
+    this.setState({username_picker: event.target.value});
+
   }
 
   render() {
@@ -63,9 +66,9 @@ class ListGroupCollapse extends React.Component {
                     </div>
                     <p>Sales Order {cat.index} - {cat.entidade} - {cat.data} </p>
                     <FormGroup>
-                      <Input type="select" name="picker" id="exampleSelect" value={cat.username_picker} onChange={this.handleChangePicker}>
+                      <Input type="select" name="picker" id="exampleSelect" value={this.state.username_picker} onChange={this.handleChangePicker}>
                         {pickers.map(picker => (
-                          <option key={picker.username} value={picker.username}>{picker.name}</option>                          
+                          <option key={picker.username} value={picker.username}>{picker.name}</option>
                         ))}
                       </Input>
                       <Input readOnly type="text" name="idCabecDoc" id="id_salesOrder" style={{display: "none"}} value={cat.IdCabecDoc}>

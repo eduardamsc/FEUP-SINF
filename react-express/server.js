@@ -20,6 +20,7 @@ const inventory = require('./routes/inventory')
 const salesOrders = require('./routes/salesOrders')
 const deliveryNote = require('./routes/deliveryNote')
 const checkDigit = require('./routes/checkDigit')
+const pickers = require('./routes/pickers')
 const assignSalesOrder = require('./routes/assignSalesOrder')
 
 const cors = require('cors')
@@ -61,6 +62,7 @@ app.use('/inventory', inventory)
 app.use('/salesOrders', salesOrders)
 app.use('/deliveryNote', deliveryNote)
 app.use('/checkDigit', checkDigit)
+app.use('/pickers', pickers)
 app.use('/assignSalesOrder', assignSalesOrder)
 
 const port = 5000

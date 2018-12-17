@@ -56,6 +56,7 @@ router.get('/', function(req, res){
             }
             salesOrders[salesOrders.length-1].artigos[salesOrder.artigos.length] = artigo;
           }
+          
         }
         var data = {
           pickers: users,

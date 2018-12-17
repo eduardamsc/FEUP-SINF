@@ -20,7 +20,7 @@ router.get('/', function(req, res){
     .then(response => {
       var products = JSON.parse(response).DataSet.Table;
       var data = new Date(products[0].Data);
-      data = data.getDate() + " " + (data.getMonth()+1) + " " + data.getFullYear();
+      data = data.getDate() + "/" + (data.getMonth()+1) + "/" + data.getFullYear();
 
       var data = {
         products: products,

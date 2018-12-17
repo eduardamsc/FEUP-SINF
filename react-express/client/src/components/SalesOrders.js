@@ -73,19 +73,17 @@ class SalesOrder extends Component {
             <Collapse isOpen={this.state.collapse}>
               <Card>
                 <CardBody>
-                    <p>Product - P1 location - 2 unit </p>
-                    <p>Product - P3 location - 5 unit </p>
-                    <p>Product - P6 location - 8 unit </p>
+              
+                  {salesOrders.map(salesOrder => (
+                    <p key={salesOrder.Entidade}>
+                      {salesOrder.Artigo} - {salesOrder.Quantidade} - {salesOrder.Localizacao}
+                    </p>
+                  ))}
+          
                 </CardBody>
               </Card>
             </Collapse>
-            <ul>
-          {salesOrders.map(salesOrder => (
-            <li key={salesOrder.Entidade}>
-              {salesOrder.Artigo} {salesOrder.Quantidade} {salesOrder.Localizacao}
-            </li>
-          ))}
-        </ul>
+       
           </div>
         );
       }

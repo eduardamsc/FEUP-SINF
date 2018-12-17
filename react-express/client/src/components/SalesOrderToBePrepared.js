@@ -3,7 +3,7 @@ import { NavLink } from 'reactstrap';
 import { NavLink as RRNavLink } from 'react-router-dom';
 
 
-class Wave extends Component {
+class SalesOrderToBePrepared extends Component {
 
     render() {
         return (
@@ -25,7 +25,7 @@ class Wave extends Component {
                       </tr>
                   </thead>
                   <tbody>
-                    <tr> 
+                    <tr>
                       <th scope="row">1</th>
                       <td><NavLink to="/wave/productLocation" tag={RRNavLink}>Rice</NavLink></td>
                       <td>100</td>
@@ -38,4 +38,4 @@ class Wave extends Component {
     }
 }
 
-export default Wave;
+export default SalesOrderToBePrepared;

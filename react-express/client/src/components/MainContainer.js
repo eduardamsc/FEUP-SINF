@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import { Route, NavLink as RRNavLink, BrowserRouter } from 'react-router-dom';
 import Home from './Home';
-import Wave from './Wave';
+import SalesOrderToBePrepared from './SalesOrderToBePrepared';
 import SignIn from './SignIn';
 import ProductLocation from './ProductLocation';
 import ProductUnits from './ProductUnits';
@@ -72,10 +72,10 @@ class MainContainer extends Component {
                               onChildSetAuthenticated={this.handleChildSetAuthenticated}
                               onGetIsAuthenticated={this.handleGetIsAuthenticated}
                               onChildUnsetAuthenticated={this.handleChildUnsetAuthenticated}/>}/>
-          <Route exact path="/wave" component={Wave} />
-          <Route path="/wave/productLocation" component={ProductLocation} />
-          <Route path="/wave/productUnits" component={ProductUnits} />
-          <Route path="/wave/pickedUnits" component={PickedUnits} />
+          <Route exact path="/salesOrderToBePrepared" component={SalesOrderToBePrepared} />
+          <Route path="/salesOrderToBePrepared/productLocation" component={ProductLocation} />
+          <Route path="/salesOrderToBePrepared/productUnits" component={ProductUnits} />
+          <Route path="/salesOrderToBePrepared/pickedUnits" component={PickedUnits} />
           <Route path="/goodJob" component={GoodJob} />
           <Route path="/salesOrders" component={SalesOrders} />
           <Route path="/warehouse" component={Warehouse} />

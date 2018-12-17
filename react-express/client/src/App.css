@@ -273,3 +273,12 @@ margin-right: 20px;
 .collapse.show p {
   margin: 15px !important;
 }
+.startPicking a{
+  text-decoration: none;
+  color: white;
+}
+
+.startPicking a:hover{
+  text-decoration: none;
+  color: white;
+}

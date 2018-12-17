@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Collapse, Button, CardBody, Card,Input,FormGroup } from 'reactstrap';
+import ListGroupCollapse from './ListGroupCollapse';
 
 class SalesOrder extends Component {
     constructor(props) {
@@ -53,41 +53,11 @@ class SalesOrder extends Component {
         const { salesOrders } = this.state;
         return (
           <div className="salesOrder container justify-content-center">
-            {salesOrders.map(salesOrder => (
-              <div>
-                <Button className="salesOrderBtn" onClick={this.toggle}>
-                    <div className="d-flex justify-content-between">
-                        <div class="round">
-                            <Input  id="checkbox" addon type="checkbox" aria-label="Checkbox for following text input" />
-                            <label for="checkbox"></label>
-                        </div>
-                        <p>Sales Order {salesOrder.index} - {salesOrder.entidade} - {salesOrder.data} </p>
-                        <FormGroup>
-                            <Input type="select" name="picker" id="exampleSelect">
-                                <option>Picker 1</option>
-                                <option>Picker 2</option>
-                                <option>Picker 3</option>
-                                <option>Picker 4</option>
-                                <option>Picker 5</option>
-                            </Input>
-                        </FormGroup>
-                    </div>
-                </Button>
-                <Collapse isOpen={this.state.collapse}>
-                  <Card>
-                    <CardBody>
-
-                      {salesOrder.artigos.map(artigo => (
-                        <p>
-                          {artigo.nome} - {artigo.quantidade} - {artigo.localizacao}
-                        </p>
-                      ))}
-
-                    </CardBody>
-                  </Card>
-                </Collapse>
-              </div>
-            ))}
+       
+            {Object.keys(salesOrders).map((key, index) =>
+              <ListGroupCollapse key={index} cat={salesOrders[key]} />
+            )}
+   
 
           </div>
         );

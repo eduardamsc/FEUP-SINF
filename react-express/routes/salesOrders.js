@@ -16,7 +16,7 @@ router.get('/', function(req, res){
         id = response[i].IdCabecDoc;
         console.log(response[i].Data);
         var data = new Date(response[i].Data);
-        data = data.getDate() + " " + (data.getMonth()+1) + " " + data.getFullYear();
+        data = data.getDate() + "/" + (data.getMonth()+1) + "/" + data.getFullYear();
         salesOrder = {
           artigos: [],
           entidade: response[i].Entidade,

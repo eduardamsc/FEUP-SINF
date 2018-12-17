@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const primavera = require('../primavera')
-const { AssignSalesOrder } = require('../database')
+const { AssignSalesOrder, Product } = require('../database')
 
 router.get('/', function(req, res){
 
@@ -15,18 +15,32 @@ router.get('/', function(req, res){
     AND Artigo IS NOT NULL 
     AND LinhasDoc.IdCabecDoc='` + assignSalesOrder.id_salesOrder + `'`;
 
-
     primavera.query(req.session.primavera.access_token, query)
     .then(response => {
       var products = JSON.parse(response).DataSet.Table;
-      var data = new Date(products[0].Data);
-      data = data.getDate() + "/" + (data.getMonth()+1) + "/" + data.getFullYear();
+      console.log(products);
+      var elements = [];
+      for (let index = 0; index < products.length; index++) {
+        var element = {
+          id_salesOrder: assignSalesOrder.id_salesOrder,
+          product: products[index].Artigo,
+          quantity: products[index].Quantidade,
+        }
+        elements.push(element);
+      }
+        Product.bulkCreate(elements) .then(element => {
+         
+          var data = new Date(products[0].Data);
+          data = data.getDate() + "/" + (data.getMonth()+1) + "/" + data.getFullYear();
 
-      var data = {
-        products: products,
-        data: data
-      };
-      res.status(200).json(data)
+          var data = {
+            products: products,
+            data: data
+          };
+          res.status(200).json(data);
+        }).catch(error => {
+          res.status(500).send(error)
+        });
     })
     .catch(error => {
      res.status(500).send(error)

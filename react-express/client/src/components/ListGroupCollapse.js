@@ -4,17 +4,18 @@ import { ListGroupItem, Collapse, Button,Input, FormGroup } from 'reactstrap';
 class ListGroupCollapse extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.toggle = this.toggle.bind(this);
     this.state = {collapse: false};
   }
-  
+
   toggle() {
     this.setState({ collapse: !this.state.collapse });
   }
-  
+
   render() {
     const cat = this.props.cat;
+    const pickers = this.props.pickers;
 
     return (
       <ListGroupItem>
@@ -29,16 +30,14 @@ class ListGroupCollapse extends React.Component {
                     <p>Sales Order {cat.index} - {cat.entidade} - {cat.data} </p>
                     <FormGroup>
                         <Input type="select" name="picker" id="exampleSelect">
-                            <option>Picker 1</option>
-                            <option>Picker 2</option>
-                            <option>Picker 3</option>
-                            <option>Picker 4</option>
-                            <option>Picker 5</option>
+                          {pickers.map(picker => (
+                              <option>{picker.name}</option>
+                          ))}
                         </Input>
                     </FormGroup>
                 </div>
             </Button>
-   
+
           <Collapse isOpen={this.state.collapse}>
             {cat.artigos.map(artigo => (
                 <p>

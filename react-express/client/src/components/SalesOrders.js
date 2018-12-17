@@ -7,7 +7,8 @@ class SalesOrder extends Component {
         this.toggle = this.toggle.bind(this);
         this.state = {
           collapse: false,
-          salesOrders: []
+          salesOrders: [],
+          pickers: []
         };
       }
 
@@ -27,9 +28,11 @@ class SalesOrder extends Component {
         .then(res => res.json())
         .then(
             (result) => {
+              console.log(result);
               this.setState({
                 isLoaded: true,
-                salesOrders: result
+                salesOrders: result.salesOrders,
+                pickers: result.pickers
               });
             },
                 // Note: it's important to handle errors here
@@ -50,14 +53,17 @@ class SalesOrder extends Component {
 
 
       render() {
-        const { salesOrders } = this.state;
+        const { salesOrders, pickers } = this.state;
+        console.log(salesOrders);
         return (
           <div className="salesOrder container justify-content-center">
-       
+
             {Object.keys(salesOrders).map((key, index) =>
-              <ListGroupCollapse key={index} cat={salesOrders[key]} />
+              <ListGroupCollapse key={index} cat={salesOrders[key]} pickers={pickers} />
             )}
-   
+            {pickers.map(picker => (
+                <p>{picker.nome}</p>
+            ))}
 
           </div>
         );

@@ -6,11 +6,9 @@ router.get('/', function(req, res){
   const query = "SELECT Cliente, Nome, Fac_Mor, Pais, Fac_Local FROM Clientes WHERE Fac_Local='Porto'"
   primavera.query(req.session.primavera.access_token, query)
   .then(response => {
-    //console.log(JSON.parse(response))
     res.status(200).json(JSON.parse(response).DataSet.Table)
   })
   .catch(error => {
-    //console.error(error)
     res.status(500).send(error)
   })
 })

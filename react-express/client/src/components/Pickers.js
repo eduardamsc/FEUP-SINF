@@ -24,7 +24,6 @@ class Pickers extends Component {
         })
         .then((response) => response.json())
           .then((responseJson) => {
-            console.log(responseJson);
             this.setState({
               isLoaded: true,
               pickers: responseJson,
@@ -32,7 +31,6 @@ class Pickers extends Component {
 
           })
           .catch((error) => {
-            console.error(error);
             alert('Error logging in please try again');
           });
 
@@ -44,7 +42,7 @@ class Pickers extends Component {
             <div className="container pickers justify-content-center">
                   <div className="row">
                   <h4>Pickers</h4>
-              </div> 
+              </div>
                <div className="row container">
                {pickers.map(picker => (
                     <div className="col-2 picker justify-content-center">

@@ -9,7 +9,7 @@ router.post('/', function(req, res){
     id_salesOrder: req.body.id_salesOrder
   }
 
-  AssignSalesOrder.bulkCreate([assignSalesOrder]) .then(assignSalesOrder => {
+  AssignSalesOrder.bulkCreate([assignSalesOrder]).then(assignSalesOrder => {
     var data = {
       id_salesOrder: req.body.id_salesOrder
     }

@@ -15,7 +15,6 @@ router.get('/', function(req, res){
     .then(assignedSalesOrder => {
       primavera.query(req.session.primavera.access_token, query)
       .then(response => {
-        //console.log(JSON.parse(response))
         var salesOrders = [];
         var response = JSON.parse(response).DataSet.Table;
         var id = null;
@@ -56,7 +55,7 @@ router.get('/', function(req, res){
             }
             salesOrders[salesOrders.length-1].artigos[salesOrder.artigos.length] = artigo;
           }
-          
+
         }
         var data = {
           pickers: users,

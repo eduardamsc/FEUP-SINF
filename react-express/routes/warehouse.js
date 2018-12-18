@@ -7,7 +7,6 @@ router.get('/', function(req, res){
 
   primavera.query(req.session.primavera.access_token, query)
   .then(response => {
-    //console.log(JSON.parse(response))
     var warehouse = [];
     var response = JSON.parse(response).DataSet.Table;
 

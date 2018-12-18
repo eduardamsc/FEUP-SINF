@@ -40,9 +40,9 @@ class ProductLocation extends Component {
         })
     })
     .then((response) => response.json())
-      .then((responseJson) => {
-        console.log(responseJson);
-        if(responseJson) {
+    .then((responseJson) => {
+      if(responseJson) {
+        if(!responseJson.notEnoughQuantity) {
           this.setState({
             product: responseJson,
             location: responseJson.location
@@ -50,10 +50,13 @@ class ProductLocation extends Component {
         } else {
           this.props.history.push(`/salesOrderToBePrepared`);
         }
-      })
-      .catch((error) => {
-        alert('Error on Check Digit, please try again');
-      });
+      } else {
+        this.props.history.push(`/salesOrderToBePrepared`);
+      }
+    })
+    .catch((error) => {
+      alert('Error on Check Digit, please try again');
+    });
   }
 
 

@@ -12,7 +12,6 @@ router.post('/', function(req, res){
       where: { id_salesOrder: req.body.salesOrderId}
     })
     .then(product => {
-      console.log(product);
       if(product == null) {
         AssignSalesOrder.destroy({
           where: { id_salesOrder: req.body.salesOrderId }
@@ -22,7 +21,6 @@ router.post('/', function(req, res){
     res.status(200).json(product)
   })
   .catch(error => {
-    //console.error(error)
     res.status(500).send(error)
   })
 

@@ -11,6 +11,8 @@ class ProductUnits extends Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
   handleInputChange(event) {
@@ -51,9 +53,10 @@ class ProductUnits extends Component {
 
 
     handleSubmit() {
-      const route = 'http://localhost:5000/checkStock';
+      const route2 = 'http://localhost:5000/checkStock';
+      const route = 'http://localhost:5000/updateProduct';
 
-      fetch(route, {
+      fetch(route2, {
           method: "POST",
           headers: {
               Accept: 'application/json',
@@ -65,20 +68,42 @@ class ProductUnits extends Component {
           credentials: "include",
 
           body: JSON.stringify({
-            checkDigit: this.state.checkDigit,
-            location: this.state.location,
-            salesOrderId: this.state.salesOrderId
+            product: this.state.product.product,
+            expectedStock: this.state.pickedUnits
           })
       })
       .then((response) => response.json())
-        .then((responseJson) => {
-          if(responseJson.length) {
-            this.props.history.push(`/salesOrderToBePrepared/productUnits/${this.state.salesOrderId}`);
-          }
-        })
-        .catch((error) => {
-          alert('Error on Check Digit, please try again');
-        });
+      .then((responseJson) => {
+        if(responseJson.length) {
+          fetch(route, {
+              method: "POST",
+              headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                  'Access-Control-Allow-Credentials': 'true',
+                  'Access-Control-Allow-Origin': '*',
+
+              },
+              credentials: "include",
+
+              body: JSON.stringify({
+                product: this.state.product.product,
+                salesOrderId: this.state.salesOrderId,
+                quantity: this.state.pickedUnits
+              })
+          })
+          .then((response) => response.json())
+          .then((responseJson) => {
+            this.props.history.push(`/salesOrderToBePrepared/productLocation/${this.state.salesOrderId}`);
+          })
+          .catch((error) => {
+            alert('Error on Check Digit, please try again');
+          });
+        }
+      })
+      .catch((error) => {
+        alert('Error on Check Digit, please try again');
+      });
     }
 
     render() {

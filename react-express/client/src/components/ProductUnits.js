@@ -7,7 +7,8 @@ class ProductUnits extends Component {
     this.state = {
       product: {},
       location: '',
-      salesOrderId: this.props.match.params.salesOrderId
+      salesOrderId: this.props.match.params.salesOrderId,
+      hasStock: false
     };
 
     this.handleOkSubmit = this.handleOkSubmit.bind(this);
@@ -47,9 +48,10 @@ class ProductUnits extends Component {
   }
 
   handleOkSubmit() {
-    console.log("remove from db");
     const route = 'http://localhost:5000/deleteProduct';
-    fetch(route, {
+    const route2 = 'http://localhost:5000/checkStock';
+
+    fetch(route2, {
         method: "POST",
         headers: {
             Accept: 'application/json',
@@ -61,17 +63,43 @@ class ProductUnits extends Component {
         credentials: "include",
 
         body: JSON.stringify({
-          salesOrderId: this.state.salesOrderId,
+          expectedStock: this.state.product.quantity,
           product: this.state.product.product
         })
     })
     .then((response) => response.json())
-      .then((responseJson) => {
-        this.props.history.push(`/salesOrderToBePrepared/productLocation/${this.state.salesOrderId}`);
-      })
-      .catch((error) => {
-        alert('Error on Check Digit, please try again');
-      });
+    .then((responseJson) => {
+      if(responseJson.length) {
+        fetch(route, {
+            method: "POST",
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': 'true',
+                'Access-Control-Allow-Origin': '*',
+
+            },
+            credentials: "include",
+
+            body: JSON.stringify({
+              salesOrderId: this.state.salesOrderId,
+              product: this.state.product.product
+            })
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+          this.props.history.push(`/salesOrderToBePrepared/productLocation/${this.state.salesOrderId}`);
+        })
+        .catch((error) => {
+          alert('Error on Check Digit, please try again');
+        });
+
+      }
+    })
+    .catch((error) => {
+      alert('Error on Check Digit, please try again');
+    });
+
   }
 
   handleClick() {

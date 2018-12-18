@@ -8,7 +8,6 @@ class ListGroupCollapse extends React.Component {
     this.handleChangePicker = this.handleChangePicker.bind(this);
     this.toggle = this.toggle.bind(this);
     this.state = {collapse: false, picker: '', index: this.props.cat.index, username_picker: this.props.cat.username_picker};
-console.log(this.state.username_picker);
   }
 
   toggle() {

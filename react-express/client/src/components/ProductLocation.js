@@ -5,7 +5,7 @@ class ProductLocation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      location:'',
+      product: {},
       checkDigit:'',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -16,10 +16,10 @@ class ProductLocation extends Component {
         [event.target.name]: event.target.value
       });
   }
-  componentDidMount() {
+  handleSubmit() {
     const route = 'http://localhost:5000/checkDigit';
     fetch(route, {
-        method: "GET",
+        method: "POST",
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -30,16 +30,16 @@ class ProductLocation extends Component {
         credentials: "include",
 
         body: JSON.stringify({
-          salesOrderId: this.props.match.params.salesOrderId
+          checkDigit: this.state.checkDigit, 
+          salesOrderId: this.props.match.params.salesOrderId,
         })
     })
     .then((response) => response.json())
       .then((responseJson) => {
-        document.getElementById(this.state.index).querySelector("#checkbox").checked = true;
-
+        console.log(responseJson)
       })
       .catch((error) => {
-        alert('Error Assigning Picker to Sales Order please try again');
+        alert('Error on Check Digit, please try again');
       });
   }
     render() {
@@ -49,7 +49,7 @@ class ProductLocation extends Component {
                 <h4>Product Location</h4>
               </div>
               <div className="row information">
-                <h5 className="col-11">Product XPTO</h5>
+                <h5 className="col-11">Product </h5>
                 <h5 className="col-1">Date</h5>
               </div>
               <div className="row justify-content-center enter">
@@ -61,11 +61,11 @@ class ProductLocation extends Component {
                   <Input 
                     name="checkDigit"
                     type="text"
-                    value={this.state.location}
+                    value={this.state.checkDigit}
                     onChange={this.handleInputChange}
                   />
                 </InputGroup>
-                <Button className="submit"color="danger">OK</Button>
+                <Button className="submit"color="danger" onClick={this.handleSubmit}>OK</Button>
               </div>
               
             </div>

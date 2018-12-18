@@ -25,6 +25,7 @@ router.get('/', function(req, res){
           id_salesOrder: assignSalesOrder.id_salesOrder,
           product: products[index].Artigo,
           quantity: products[index].Quantidade,
+          location: products[index].Localizacao,
         }
         elements.push(element);
       }

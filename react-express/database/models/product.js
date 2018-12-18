@@ -4,5 +4,6 @@ module.exports = (sequelize, type) => {
       id_salesOrder: { type: type.INTEGER, allowNull: false },
       product: { type: type.STRING, allowNull: false },
       quantity: { type: type.INTEGER, allowNull: false },
+      location: { type: type.INTEGER, allowNull: false },
     })
   }

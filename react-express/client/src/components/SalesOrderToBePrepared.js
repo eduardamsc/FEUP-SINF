@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, Button } from 'reactstrap';
-import { NavLink as RRNavLink } from 'react-router-dom';
-import ProductLocation from './ProductLocation';
+import { Button } from 'reactstrap';
 
 
 class SalesOrderToBePrepared extends Component {
@@ -49,7 +47,7 @@ class SalesOrderToBePrepared extends Component {
       }
 
     render() {
-        const { products, data, salesOrderId } = this.state;
+        const { products, data } = this.state;
 
         let productNumber = 1;
         return (

@@ -9,13 +9,16 @@ class ProductLocation extends Component {
       checkDigit:'',
       location: ''
     };
-    console.log(this.state);
-    
+
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
-  handleInputChange(event) {  
-    this.state[event.target.name] = event.target.value;      
+  handleInputChange(event) {
+      this.setState({
+          [event.target.name]: event.target.value
+      });
   }
 
   componentDidMount() {
@@ -37,7 +40,6 @@ class ProductLocation extends Component {
     })
     .then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson)
         this.setState({
           product: responseJson,
           location: responseJson.location
@@ -52,8 +54,7 @@ class ProductLocation extends Component {
 
   handleSubmit() {
     const route = 'http://localhost:5000/checkDigit';
-    console.log(this.state.checkDigit);
-    
+
     fetch(route, {
         method: "POST",
         headers: {
@@ -66,17 +67,15 @@ class ProductLocation extends Component {
         credentials: "include",
 
         body: JSON.stringify({
-          checkDigit: this.state.checkDigit, 
+          checkDigit: this.state.checkDigit,
           location: this.state.location,
         })
     })
     .then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson)
-        this.setState({
-          product: responseJson,
-        });
-
+        if(responseJson.length) {
+          console.log("checked");
+        }
       })
       .catch((error) => {
         alert('Error on Check Digit, please try again');
@@ -97,19 +96,20 @@ class ProductLocation extends Component {
               <div className="row justify-content-center enter">
                 <h3>Enter location's check digit:</h3>
               </div>
-             
+
               <div className="inputGroup row container justify-content-center">
                 <InputGroup className="col-12"size="lg">
-                  <Input 
+                  <Input
                     name="checkDigit"
                     type="text"
+                    placeholder="Check Digit"
                     value={this.state.checkDigit}
                     onChange={this.handleInputChange}
                   />
                 </InputGroup>
                 <Button className="submit"color="danger" onClick={this.handleSubmit}>OK</Button>
               </div>
-              
+
             </div>
         );
     }

@@ -83,7 +83,7 @@ class SalesOrderToBePrepared extends Component {
               </div>
               <div className="d-flex justify-content-end">
                 <Button className="startPicking" onClick={this.handleClick}>
-                  <NavLink to={`/salesOrderToBePrepared/productLocation/${salesOrderId}`}>Start Picking</NavLink>
+                 Start Picking
                </Button>
               </div>
 

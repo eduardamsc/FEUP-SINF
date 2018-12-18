@@ -9,7 +9,7 @@ router.get('/', function(req, res){
     where: { id_salesOrder: req.body.salesOrderId }
   })
   .then(product => {
-  const query = "SELECT * FROM ArmazemLocalizacoes WHERE Localizacao='" + req.body.localizacao + "' AND Descricao='" + req.body.checkDigit + "'";
+  const query = "SELECT * FROM ArmazemLocalizacoes WHERE Localizacao='" + req.body.location + "' AND Descricao='" + req.body.checkDigit + "'";
   console.log(req.session);
   
   primavera.query(req.session.primavera.access_token, query)

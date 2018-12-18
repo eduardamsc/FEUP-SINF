@@ -2,7 +2,20 @@ import React, { Component } from 'react';
 import { InputGroup, Input, Button } from 'reactstrap';
 
 class ProductLocation extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      location:'',
+      checkDigit:'',
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
 
+  handleInputChange(event) {
+    this.setState({
+        [event.target.name]: event.target.value
+      });
+  }
   componentDidMount() {
     const route = 'http://localhost:5000/checkDigit';
     fetch(route, {
@@ -17,7 +30,7 @@ class ProductLocation extends Component {
         credentials: "include",
 
         body: JSON.stringify({
-          salesOrderId: this.props.params.salesOrderId
+          salesOrderId: this.props.match.params.salesOrderId
         })
     })
     .then((response) => response.json())
@@ -44,17 +57,13 @@ class ProductLocation extends Component {
               </div>
              
               <div className="inputGroup row container justify-content-center">
-                <InputGroup className="col-3"size="lg">
-                  <Input />
-                </InputGroup>
-                <InputGroup className="col-3" size="lg">
-                  <Input />
-                </InputGroup>
-                <InputGroup className="col-3" size="lg">
-                  <Input />
-                </InputGroup>
-                <InputGroup className="col-3" size="lg">
-                  <Input />
+                <InputGroup className="col-12"size="lg">
+                  <Input 
+                    name="checkDigit"
+                    type="text"
+                    value={this.state.location}
+                    onChange={this.handleInputChange}
+                  />
                 </InputGroup>
                 <Button className="submit"color="danger">OK</Button>
               </div>

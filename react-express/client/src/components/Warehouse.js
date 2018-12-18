@@ -11,7 +11,6 @@ class Warehouse extends Component {
       this.state.warehouse["A3"] = [];
       this.state.warehouse["A4"] = [];
 
-      console.log(this.state.warehouse);
     }
 
     componentDidMount() {

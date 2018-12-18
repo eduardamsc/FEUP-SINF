@@ -14,8 +14,14 @@ class ProductLocation extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  handleInputChange(event) {  
-    this.state[event.target.name] = event.target.value;      
+  handleInputChange(event) {
+    console.log(this.state);
+    
+    this.setState({
+        [event.target.name]: event.target.value
+      });
+      console.log(this.state);
+      
   }
 
   componentDidMount() {
@@ -52,7 +58,7 @@ class ProductLocation extends Component {
 
   handleSubmit() {
     const route = 'http://localhost:5000/checkDigit';
-    console.log(this.state.checkDigit);
+    console.log(this.state);
     
     fetch(route, {
         method: "POST",
@@ -65,10 +71,7 @@ class ProductLocation extends Component {
         },
         credentials: "include",
 
-        body: JSON.stringify({
-          checkDigit: this.state.checkDigit, 
-          location: this.state.location,
-        })
+        body: JSON.stringify(this.state)
     })
     .then((response) => response.json())
       .then((responseJson) => {

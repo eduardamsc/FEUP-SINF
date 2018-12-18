@@ -11,6 +11,7 @@ class SalesOrderToBePrepared extends Component {
           products: [],
           salesOrderId: null,
         };
+        this.handleClick = this.handleClick.bind(this);
       }
 
       componentDidMount() {
@@ -43,6 +44,9 @@ class SalesOrderToBePrepared extends Component {
 
       }
 
+      handleClick() {
+        this.props.history.push(`/salesOrderToBePrepared/productLocation/${this.state.salesOrderId}`);
+      }
 
     render() {
         const { products, data, salesOrderId } = this.state;
@@ -57,8 +61,8 @@ class SalesOrderToBePrepared extends Component {
                 <h5 className="col-10">Sales Order 1</h5>
                 <h5 className="col-2">{data}</h5>
               </div>
-              <div class="tablePW">
-                  <table class="table table-hover">
+              <div className="tablePW">
+                  <table className="table table-hover">
                   <thead>
                       <tr>
                       <th scope="col">#</th>
@@ -68,7 +72,7 @@ class SalesOrderToBePrepared extends Component {
                   </thead>
                   <tbody>
                     {products.map(product => (
-                    <tr>
+                    <tr key={product.Artigo}>
                       <th scope="row">{productNumber++}</th>
                       <td>{product.Artigo}</td>
                       <td>{product.Quantidade}</td>
@@ -78,8 +82,8 @@ class SalesOrderToBePrepared extends Component {
                   </table>
               </div>
               <div className="d-flex justify-content-end">
-                <Button bsStyle="primary" className="startPicking">
-                  <NavLink to={`salesOrderToBePrepared/productLocation/${salesOrderId}`}>Start Picking</NavLink>
+                <Button className="startPicking" onClick={this.handleClick}>
+                  <NavLink to={`/salesOrderToBePrepared/productLocation/${salesOrderId}`}>Start Picking</NavLink>
                </Button>
               </div>
 

@@ -7,7 +7,8 @@ class ProductLocation extends Component {
     this.state = {
       product: {},
       checkDigit:'',
-      location: ''
+      location: '',
+      salesOrderId: this.props.match.params.salesOrderId
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -35,16 +36,20 @@ class ProductLocation extends Component {
         credentials: "include",
 
         body: JSON.stringify({
-          salesOrderId: this.props.match.params.salesOrderId,
+          salesOrderId: this.state.salesOrderId,
         })
     })
     .then((response) => response.json())
       .then((responseJson) => {
-        this.setState({
-          product: responseJson,
-          location: responseJson.location
-        });
-
+        console.log(responseJson);
+        if(responseJson) {
+          this.setState({
+            product: responseJson,
+            location: responseJson.location
+          });
+        } else {
+          this.props.history.push(`/salesOrderToBePrepared`);
+        }
       })
       .catch((error) => {
         alert('Error on Check Digit, please try again');
@@ -69,12 +74,13 @@ class ProductLocation extends Component {
         body: JSON.stringify({
           checkDigit: this.state.checkDigit,
           location: this.state.location,
+          salesOrderId: this.state.salesOrderId
         })
     })
     .then((response) => response.json())
       .then((responseJson) => {
         if(responseJson.length) {
-          console.log("checked");
+          this.props.history.push(`/salesOrderToBePrepared/productUnits/${this.state.salesOrderId}`);
         }
       })
       .catch((error) => {

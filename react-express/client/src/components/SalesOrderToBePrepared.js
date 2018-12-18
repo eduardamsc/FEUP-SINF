@@ -27,13 +27,16 @@ class SalesOrderToBePrepared extends Component {
         })
         .then((response) => response.json())
           .then((responseJson) => {
-            this.setState({
-              isLoaded: true,
-              products: responseJson.products,
-              salesOrderId: responseJson.products[0].IdCabecDoc,
-              data: responseJson.data
-            });
-
+            if(responseJson.data) {
+              this.setState({
+                isLoaded: true,
+                products: responseJson.products,
+                salesOrderId: responseJson.products[0].IdCabecDoc,
+                data: responseJson.data
+              });
+            } else {
+              this.props.history.push('/goodJob');
+            }
           })
           .catch((error) => {
             console.error(error);

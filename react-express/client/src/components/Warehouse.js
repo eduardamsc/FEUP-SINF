@@ -28,6 +28,7 @@ class Warehouse extends Component {
       })
       .then((response) => response.json())
         .then((responseJson) => {
+          console.log(responseJson);
           for(var i = 0; i < responseJson.length; i++) {
             if(responseJson[i].Localizacao > "A1.1" && responseJson[i].Localizacao < "A1.2") {
               this.state.warehouse["A1"].push(responseJson[i]);

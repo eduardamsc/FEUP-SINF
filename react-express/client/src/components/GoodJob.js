@@ -5,9 +5,6 @@ class ProductUnits extends Component {
     render() {
         return (
             <div className="container goodJob">
-              <div className="row information">
-                <h5>Date</h5>
-              </div>
               <div className="row justify-content-center">
                 <img alt="smile" src={Smile} className="smile"/>
               </div>

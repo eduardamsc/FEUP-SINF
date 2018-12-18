@@ -23,6 +23,7 @@ const checkDigit = require('./routes/checkDigit')
 const pickers = require('./routes/pickers')
 const assignSalesOrder = require('./routes/assignSalesOrder')
 const getProduct = require('./routes/getProduct')
+const deleteProduct = require('./routes/deleteProduct')
 
 const cors = require('cors')
 require('./database')
@@ -66,6 +67,7 @@ app.use('/checkDigit', checkDigit)
 app.use('/pickers', pickers)
 app.use('/assignSalesOrder', assignSalesOrder)
 app.use('/getProduct', getProduct)
+app.use('/deleteProduct', deleteProduct)
 
 const port = 5000
 app.listen(port, () => console.log(`Server started on port ${port}`))

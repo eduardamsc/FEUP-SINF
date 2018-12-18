@@ -97,7 +97,7 @@ class MainContainer extends Component {
           <Route exact path="/salesOrderToBePrepared" component={SalesOrderToBePrepared} />
           <Route path="/salesOrderToBePrepared/productLocation/:salesOrderId" component={ProductLocation} />
           <Route path="/salesOrderToBePrepared/productUnits/:salesOrderId" component={ProductUnits} />
-          <Route path="/salesOrderToBePrepared/pickedUnits" component={PickedUnits} />
+          <Route path="/salesOrderToBePrepared/pickedUnits/:salesOrderId" component={PickedUnits} />
           <Route path="/goodJob" component={GoodJob} />
           <Route path="/salesOrders" component={SalesOrders} />
           <Route path="/warehouse" component={Warehouse} />

@@ -11,6 +11,8 @@ class ProductUnits extends Component {
     };
 
     this.handleOkSubmit = this.handleOkSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+
 
   }
 
@@ -72,6 +74,10 @@ class ProductUnits extends Component {
       });
   }
 
+  handleClick() {
+    this.props.history.push(`/salesOrderToBePrepared/pickedUnits/${this.state.salesOrderId}`);
+  }
+
     render() {
       const { product } = this.state;
 
@@ -91,7 +97,7 @@ class ProductUnits extends Component {
                 <Button className="submit"color="secondary" onClick={this.handleOkSubmit}>OK</Button>
               </div>
               <div className="row justify-content-center">
-                <Button className="units"color="danger">Not enought units</Button>
+                <Button className="units"color="danger" onClick={this.handleClick}>Not enough units</Button>
               </div>
             </div>
         );

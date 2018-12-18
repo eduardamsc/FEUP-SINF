@@ -62,7 +62,8 @@ class Warehouse extends Component {
                 <div className="row  warehouse2 justify-content-center">
                   <p>{key}</p>
                   {warehouse[key].map( pos => (
-                    <div className="col-1 square">
+                    <div className="col-2 square">
+                      {pos.product.Artigo} {pos.product.Stock}
                     </div>
                   ))}
                 </div>

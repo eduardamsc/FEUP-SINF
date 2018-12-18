@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { NavLink, Button } from 'reactstrap';
 import { NavLink as RRNavLink } from 'react-router-dom';
+import ProductLocation from './ProductLocation';
 
 
 class SalesOrderToBePrepared extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          products: []
+          products: [],
+          salesOrderId: null,
         };
       }
 
@@ -29,6 +31,7 @@ class SalesOrderToBePrepared extends Component {
             this.setState({
               isLoaded: true,
               products: responseJson.products,
+              salesOrderId: responseJson.products[0].IdCabecDoc,
               data: responseJson.data
             });
 
@@ -40,8 +43,10 @@ class SalesOrderToBePrepared extends Component {
 
       }
 
+
     render() {
-        const { products, data } = this.state;
+        const { products, data, salesOrderId } = this.state;
+
         let productNumber = 1;
         return (
             <div className="container productLocation">
@@ -74,7 +79,7 @@ class SalesOrderToBePrepared extends Component {
               </div>
               <div className="d-flex justify-content-end">
                 <Button bsStyle="primary" className="startPicking">
-                <NavLink to="/salesOrderToBePrepared/productLocation" tag={RRNavLink}> Start Picking</NavLink>
+                  <NavLink to={`salesOrderToBePrepared/productLocation/${salesOrderId}`}>Start Picking</NavLink>
                </Button>
               </div>
 

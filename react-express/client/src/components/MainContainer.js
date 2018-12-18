@@ -95,7 +95,7 @@ class MainContainer extends Component {
                               onGetIsAuthenticated={this.handleGetIsAuthenticated}
                               onChildUnsetAuthenticated={this.handleChildUnsetAuthenticated}/>}/>
           <Route exact path="/salesOrderToBePrepared" component={SalesOrderToBePrepared} />
-          <Route path="/salesOrderToBePrepared/productLocation" component={ProductLocation} />
+          <Route path="/salesOrderToBePrepared/productLocation/:salesOrderId" component={ProductLocation} />
           <Route path="/salesOrderToBePrepared/productUnits" component={ProductUnits} />
           <Route path="/salesOrderToBePrepared/pickedUnits" component={PickedUnits} />
           <Route path="/goodJob" component={GoodJob} />

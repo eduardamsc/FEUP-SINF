@@ -2,6 +2,33 @@ import React, { Component } from 'react';
 import { InputGroup, Input, Button } from 'reactstrap';
 
 class ProductLocation extends Component {
+
+  componentDidMount() {
+    const route = 'http://localhost:5000/checkDigit';
+    fetch(route, {
+        method: "GET",
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Credentials': 'true',
+            'Access-Control-Allow-Origin': '*',
+
+        },
+        credentials: "include",
+
+        body: JSON.stringify({
+          salesOrderId: this.props.params.salesOrderId
+        })
+    })
+    .then((response) => response.json())
+      .then((responseJson) => {
+        document.getElementById(this.state.index).querySelector("#checkbox").checked = true;
+
+      })
+      .catch((error) => {
+        alert('Error Assigning Picker to Sales Order please try again');
+      });
+  }
     render() {
         return (
             <div className="container productLocation">

@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize')
 const UserModel = require('./models/user')
 const AssignSalesOrderModel = require('./models/assignSalesOrder')
+const ProductModel = require('./models/product')
 
 
 const sequelize = new Sequelize('server', 'admin', 'sqladmin', {
@@ -19,6 +20,7 @@ const sequelize = new Sequelize('server', 'admin', 'sqladmin', {
 
 const User = UserModel(sequelize, Sequelize)
 const AssignSalesOrder = AssignSalesOrderModel(sequelize, Sequelize)
+const Product = ProductModel(sequelize, Sequelize)
 
 sequelize
   .authenticate()
@@ -49,5 +51,5 @@ sequelize
   
 
 module.exports = {
-  User, AssignSalesOrder
+  User, AssignSalesOrder, Product
 }

@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import LeftArrow from '../assets/left-arrow.png';
-import RightArrow from '../assets/right-arrow.png';
+
 class Warehouse extends Component {
   constructor(props) {
       super(props);
       this.state = {
         warehouse: []
       };
+      this.state.warehouse["A1"] = [];
+      this.state.warehouse["A2"] = [];
+      this.state.warehouse["A3"] = [];
+      this.state.warehouse["A4"] = [];
+
+      console.log(this.state.warehouse);
     }
 
     componentDidMount() {
@@ -24,152 +29,46 @@ class Warehouse extends Component {
       })
       .then((response) => response.json())
         .then((responseJson) => {
-          console.log(responseJson);
+          for(var i = 0; i < responseJson.length; i++) {
+            if(responseJson[i].Localizacao > "A1.1" && responseJson[i].Localizacao < "A1.2") {
+              this.state.warehouse["A1"].push(responseJson[i]);
+            }
+            else if(responseJson[i].Localizacao > "A1.2" && responseJson[i].Localizacao < "A1.3") {
+              this.state.warehouse["A2"].push(responseJson[i]);
+            }
+            else if(responseJson[i].Localizacao > "A1.3" && responseJson[i].Localizacao < "A1.4") {
+              this.state.warehouse["A3"].push(responseJson[i]);
+            }
+            else if(responseJson[i].Localizacao > "A1.4" && responseJson[i].Localizacao < "A1.5") {
+              this.state.warehouse["A4"].push(responseJson[i]);
+            }
+          }
           this.setState({
             isLoaded: true,
-            warehouse: responseJson,
           });
 
         })
         .catch((error) => {
           console.error(error);
-          alert('Error logging in please try again');
+          alert('Error Getting Warehouse please try again');
         });
 
     }
 
       render() {
+        const { warehouse } = this.state;
         return (
             <div className="container warehouseDiv">
-                <div className="row  warehouse justify-content-center">
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 ">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 ">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                </div>
+              {Object.keys(warehouse).map((key, index) =>
                 <div className="row  warehouse2 justify-content-center">
+                  <p>{key}</p>
+                  {warehouse[key].map( pos => (
                     <div className="col-1 square">
                     </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 ">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 ">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
+                  ))}
                 </div>
-                <div className="row  warehouse2 justify-content-center">
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 ">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 ">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                </div>
-                <div className="row  warehouse2 justify-content-center">
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 ">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 ">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                    <div className="col-1 square">
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-1">
-                        <img alt="arrow"  src={LeftArrow} className="leftArrow"/>
-                    </div>
-                    <div className="col-1">
-                        <img alt="arrow"  src={RightArrow} className="leftArrow"/>
-                    </div>
-                    <div className="col-1">
-                    </div>
-                    <div className="col-1">
-                        <img alt="arrow" src={LeftArrow} className="leftArrow2"/>
-                    </div>
-                    <div className="col-1">
-                        <img alt="arrow" src={RightArrow} className="leftArrow2"/>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-1">
-                       <p>A</p>
-                    </div>
-                    <div className="col-1">
-                       <p>B</p>
-                    </div>
-                    <div className="col-1">
-                    </div>
-                    <div className="col-1">
-                       <p>C</p>
-                    </div>
-                    <div className="col-1">
-                       <p>D</p>
-                    </div>
-                </div>
-             </div>
+              )}
+            </div>
 
         );
       }

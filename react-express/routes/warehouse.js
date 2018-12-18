@@ -4,7 +4,6 @@ const primavera = require('../primavera')
 
 router.get('/', function(req, res){
   const query = "SELECT  Localizacao,Armazem, Descricao FROM ArmazemLocalizacoes";
-  console.log(req.session);
 
   primavera.query(req.session.primavera.access_token, query)
   .then(response => {
@@ -13,9 +12,7 @@ router.get('/', function(req, res){
     var response = JSON.parse(response).DataSet.Table;
 
     for(var i = 0; i < response.length; i++) {
-      console.log(response[i].Localizacao);
       if(response[i].Localizacao != "A1" && response[i].Localizacao != "A1.1" && response[i].Localizacao != "A1.2" && response[i].Localizacao != "A1.3" && response[i].Localizacao != "A1.4") {
-        console.log(response[i].Localizacao);
         warehouse.push(response[i]);
       }
     }

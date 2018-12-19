@@ -248,11 +248,16 @@ margin-right: 20px;
 .leftArrow2{
   margin-left: 30px;
 }
+
+.warehouseDiv {
+  margin-top:10%;
+}
 .warehouseDiv p{
   font-size: 20px;
   margin-left: 40px;
   font-weight: bold;
   color: #6E757c;
+  margin-top:5%;
 }
 .enter{
   margin-bottom: 5%;

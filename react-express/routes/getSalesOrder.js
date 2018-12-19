@@ -20,7 +20,7 @@ router.get('/', function(req, res){
       var elements = [];
 
       Product.findAll({
-        attributes: [ 'product', 'location', 'quantity', 'id_salesOrder', 'date' ],
+        attributes: [ 'product', 'location', 'quantity', 'id_salesOrder', 'date', 'notEnoughQuantity' ],
         where: { id_salesOrder: assignSalesOrder.dataValues.id_salesOrder}
       }).then(response => {
 
@@ -57,17 +57,25 @@ router.get('/', function(req, res){
               Data: response[i].date,
               Artigo: response[i].product,
               Quantidade: response[i].quantity,
+              IdCabecDoc: response[i].id_salesOrder
             }
             products.push(product);
           }
-          var data = new Date(products[0].Data);
-          data = data.getDate() + "/" + (data.getMonth()+1) + "/" + data.getFullYear();
-          var data = {
-            products: products,
-            data: data
-          };
-          res.status(200).json(data);
 
+          Product.update(
+            { notEnoughQuantity: false },
+            {where: { id_salesOrder: assignSalesOrder.dataValues.id_salesOrder}}
+          ).then(result => {
+            var data = new Date(products[0].Data);
+            data = data.getDate() + "/" + (data.getMonth()+1) + "/" + data.getFullYear();
+            var data = {
+              products: products,
+              data: data
+            };
+
+            res.status(200).json(data);
+
+          })
         }
       })
     })

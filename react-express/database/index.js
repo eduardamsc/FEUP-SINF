@@ -40,6 +40,8 @@ sequelize
       { name: 'Francisca Paupério', userType: 'manager', username: 'fpauperio', password: '12345678' },
       { name: 'Luis Saraiva', userType: 'picker', username: 'lsaraiva', password: '12345678' },
       { name: 'Mariana Silva', userType: 'picker', username: 'msilva', password: '12345678' },
+      { name: 'Eduarda Cunha', userType: 'picker', username: 'ecunha', password: '12345678' },
+
     ])
 
   })

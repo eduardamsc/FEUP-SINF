@@ -10,8 +10,6 @@ const session = require('express-session')
 
 // REQUIRE ROUTS
 const index = require('./routes/index')
-const articles = require('./routes/articles')
-const customers = require('./routes/customers')
 const getSalesOrder = require('./routes/getSalesOrder')
 const warehouse = require('./routes/warehouse')
 const productUnits = require('./routes/productUnits')
@@ -55,8 +53,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 // USES ROUTES
 app.use('/', index)
 app.use('/getSalesOrder', getSalesOrder)
-app.use('/articles', articles)
-app.use('/customers', customers)
 app.use('/warehouse', warehouse)
 app.use('/login', index)
 app.use('/productUnits', productUnits)

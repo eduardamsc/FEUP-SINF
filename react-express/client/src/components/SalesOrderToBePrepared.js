@@ -59,7 +59,7 @@ class SalesOrderToBePrepared extends Component {
                   <h4>Sales Order to be prepared</h4>
               </div>
               <div className="row information">
-                <h5 className="col-10">Sales Order 1</h5>
+                <h5 className="col-10">Sales Order</h5>
                 <h5 className="col-2">{data}</h5>
               </div>
               <div className="tablePW">

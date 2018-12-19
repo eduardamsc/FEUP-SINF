@@ -42,14 +42,9 @@ sequelize
       { name: 'Mariana Silva', userType: 'picker', username: 'msilva', password: '12345678' },
     ])
 
-    AssignSalesOrder.bulkCreate([
-      { username_picker: 'lsaraiva',  id_salesOrder: '4b2b5c51-f3e3-11e8-bd69-080027b49706'},
-      { username_picker: 'msilva',  id_salesOrder: '8799f449-f3e7-11e8-bd69-080027b49706'},
-    ])
-
   })
 
-  
+
 
 module.exports = {
   User, AssignSalesOrder, Product

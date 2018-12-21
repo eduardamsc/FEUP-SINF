@@ -51,30 +51,7 @@ class ProductLocation extends Component {
           this.props.history.push(`/salesOrderToBePrepared`);
         }
       } else {
-        const route2 = 'http://localhost:5000/deliveryNote';
-
-        fetch(route2, {
-            method: "POST",
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Credentials': 'true',
-                'Access-Control-Allow-Origin': '*',
-
-            },
-            credentials: "include",
-
-            body: JSON.stringify({
-              salesOrderId: this.state.salesOrderId,
-            })
-        })
-        .then((response) => response.json())
-        .then((responseJson) => {
           this.props.history.push(`/salesOrderToBePrepared`);
-        })
-        .catch((error) => {
-          alert('Error on Delivery Note, please try again');
-        });
       }
     })
     .catch((error) => {

@@ -106,7 +106,33 @@ class ProductUnits extends Component {
   }
 
   handleClick() {
+    const route = 'http://localhost:5000/checkStock';
+
+    fetch(route, {
+        method: "POST",
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Credentials': 'true',
+            'Access-Control-Allow-Origin': '*',
+
+        },
+        credentials: "include",
+
+        body: JSON.stringify({
+          expectedStock: this.state.product.quantity,
+          product: this.state.product.product
+        })
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      if(responseJson[0].Stock > this.state.product.quantity){
+        alert("There is enough quantity of this product to pick ("+responseJson[0].Stock+")! You can choose OK button");
+      }
+    });
+
     this.props.history.push(`/salesOrderToBePrepared/pickedUnits/${this.state.salesOrderId}`);
+
   }
 
     render() {

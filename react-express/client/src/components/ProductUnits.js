@@ -69,6 +69,9 @@ class ProductUnits extends Component {
     })
     .then((response) => response.json())
     .then((responseJson) => {
+      if(responseJson[0].Stock < this.state.product.quantity){
+        alert("On warehouse, there isn't quantity enough to pick!");
+      }
       if(responseJson.length) {
         fetch(route, {
             method: "POST",

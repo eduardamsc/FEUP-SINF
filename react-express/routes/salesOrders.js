@@ -4,7 +4,7 @@ const primavera = require('../primavera')
 const { User, AssignSalesOrder } = require('../database')
 
 router.get('/', function(req, res){
-  const query = "SELECT CabecDoc.Data, LinhasDoc.Artigo, LinhasDoc.Quantidade, Localizacao, CabecDoc.Entidade, LinhasDoc.IdCabecDoc, LinhasDoc.Id FROM LinhasDoc, CabecDoc WHERE CabecDoc.Id=LinhasDoc.IdCabecDoc AND CabecDoc.TipoDoc='ECL' AND LinhasDoc.Artigo IS NOT NULL ORDER BY LinhasDoc.IdCabecDoc ASC, LinhasDoc.Data DESC";
+  const query = "SELECT CabecDoc.Data, CabecDoc.NumDoc, LinhasDoc.Artigo, LinhasDoc.Quantidade, Localizacao, CabecDoc.Entidade, LinhasDoc.IdCabecDoc, LinhasDoc.Id FROM LinhasDoc, CabecDoc WHERE CabecDoc.Id=LinhasDoc.IdCabecDoc AND CabecDoc.TipoDoc='ECL' AND LinhasDoc.Artigo IS NOT NULL ORDER BY LinhasDoc.IdCabecDoc ASC, LinhasDoc.Data DESC";
 
   User.findAll({
     attributes: ['id', 'username', 'name', 'userType'],
@@ -39,7 +39,9 @@ router.get('/', function(req, res){
               index: salesOrders.length+1,
               IdCabecDoc: response[i].IdCabecDoc,
               checked: checked,
-              username_picker: username_picker
+              username_picker: username_picker,
+              num_doc: response[i].NumDoc,
+              entidade: response[i].Entidade
             };
             var artigo = {
               nome: response[i].Artigo,

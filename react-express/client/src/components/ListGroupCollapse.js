@@ -7,7 +7,11 @@ class ListGroupCollapse extends React.Component {
     this.handlePickerSubmit = this.handlePickerSubmit.bind(this);
     this.handleChangePicker = this.handleChangePicker.bind(this);
     this.toggle = this.toggle.bind(this);
-    this.state = {collapse: false, picker: '', index: this.props.cat.index, username_picker: this.props.cat.username_picker};
+    this.state = {
+      collapse: false, picker: '',
+      index: this.props.cat.index,
+      username_picker: this.props.cat.username_picker
+    };
   }
 
   toggle() {
@@ -17,6 +21,9 @@ class ListGroupCollapse extends React.Component {
   handlePickerSubmit() {
     var username_picker = document.getElementById(this.state.index).querySelector("#exampleSelect").options[document.getElementById(this.state.index).querySelector("#exampleSelect").selectedIndex].value;
     var id_salesOrder = document.getElementById(this.state.index).querySelector("#id_salesOrder").value;
+    var num_doc = document.getElementById(this.state.index).querySelector("#num_doc").value;
+    var entidade = document.getElementById(this.state.index).querySelector("#entidade").value;
+
     const route = 'http://localhost:5000/assignSalesOrder';
     fetch(route, {
         method: "POST",
@@ -31,7 +38,9 @@ class ListGroupCollapse extends React.Component {
 
         body: JSON.stringify({
           username_picker: username_picker,
-          id_salesOrder: id_salesOrder
+          id_salesOrder: id_salesOrder,
+          num_doc: num_doc,
+          entidade: entidade
         })
     })
     .then((response) => response.json())
@@ -71,6 +80,10 @@ class ListGroupCollapse extends React.Component {
                         ))}
                       </Input>
                       <Input readOnly type="text" name="idCabecDoc" id="id_salesOrder" style={{display: "none"}} value={cat.IdCabecDoc}>
+                      </Input>
+                      <Input readOnly type="text" name="num_doc" id="num_doc" style={{display: "none"}} value={cat.num_doc}>
+                      </Input>
+                      <Input readOnly type="text" name="entidade" id="entidade" style={{display: "none"}} value={cat.entidade}>
                       </Input>
                     </FormGroup>
                 </div>

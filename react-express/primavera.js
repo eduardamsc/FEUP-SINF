@@ -24,11 +24,11 @@ function token() {
   })
 }
 
-function deliveryNote(client, bearer) {
-  const URL = process.env.API_URL + '/Vendas/Docs/TransformDocument/ECL/A/1/000/false'
+function deliveryNote(ecl_number, entidade, bearer) {
+  const URL = process.env.API_URL + '/Vendas/Docs/TransformDocument/ECL/A/' + ecl_number + '/000/false'
   const REQ_DATA = {
     TipoDoc: "GR",
-    Entidade: client,
+    Entidade: entidade,
     DataDoc: new Date(),
     DataVenc: new Date(),
     Serie: "A",

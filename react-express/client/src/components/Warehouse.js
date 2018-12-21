@@ -45,6 +45,7 @@ class Warehouse extends Component {
           this.setState({
             isLoaded: true,
           });
+          console.log(this.state.warehouse);
 
         })
         .catch((error) => {

@@ -47,7 +47,7 @@ class ProductUnits extends Component {
 
       })
       .catch((error) => {
-        alert('Error on Check Digit, please try again');
+        alert('Error, please try again');
       });
   }
 

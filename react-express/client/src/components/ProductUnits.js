@@ -94,13 +94,13 @@ class ProductUnits extends Component {
           this.props.history.push(`/salesOrderToBePrepared/productLocation/${this.state.salesOrderId}`);
         })
         .catch((error) => {
-          alert('Error on Check Digit, please try again');
+          alert('Error, please try again');
         });
 
       }
     })
     .catch((error) => {
-      alert('Error on Check Digit, please try again');
+      alert("On warehouse, there isn't quantity enough to pick!");
     });
 
   }

@@ -14,13 +14,28 @@ router.post('/', function(req, res){
       where: { id_salesOrder: req.body.salesOrderId, product: req.body.product}
     }).then(affected => {
       Product.bulkCreate([
-        { date: date, product: req.body.product, id_salesOrder: req.body.salesOrderId, location: location, quantity: quantity, notEnoughQuantity: true},
+        {
+          date: date,
+          product: req.body.product,
+          id_salesOrder: req.body.salesOrderId,
+          location: location,
+          quantity: quantity,
+          notEnoughQuantity: true
+        },
       ]).then(product => {
-        AssignSalesOrder.destroy({
+        AssignSalesOrder.findOne({
           where: { id_salesOrder: req.body.salesOrderId }
-        }).then(affected => {
+        }).then(assignSalesOrder => {
+          var num_doc = assignSalesOrder.dataValues.num_doc;
+          var entidade = assignSalesOrder.dataValues.entidade;
+          assignSalesOrder.destroy();
           AssignSalesOrder.bulkCreate([
-            { username_picker: req.session.user.username,  id_salesOrder: req.body.salesOrderId},
+            {
+              username_picker: req.session.user.username,
+              id_salesOrder: req.body.salesOrderId,
+              num_doc: num_doc,
+              entidade: entidade
+            },
           ]).then(assignSalesOrder => {
             res.status(200).json(product)
           })

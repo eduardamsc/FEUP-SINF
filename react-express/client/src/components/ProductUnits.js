@@ -126,13 +126,14 @@ class ProductUnits extends Component {
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      if(responseJson[0].Stock > this.state.product.quantity){
+      console.log(responseJson);
+      if(responseJson.length && responseJson[0].Stock > this.state.product.quantity){
         alert("There is enough quantity of this product to pick ("+responseJson[0].Stock+")! You can choose OK button");
+      } else {
+        this.props.history.push(`/salesOrderToBePrepared/pickedUnits/${this.state.salesOrderId}`);
+
       }
     });
-
-    this.props.history.push(`/salesOrderToBePrepared/pickedUnits/${this.state.salesOrderId}`);
-
   }
 
     render() {
